@@ -1,4 +1,4 @@
-from app.ingestion.chunking import chunk_text_by_sentences
+from app.ingestion.chunking import chunk_text_recursive
 from app.ingestion.cleaning import clean_text
 from app.ingestion.metadata import build_chunks_with_metadata
 from app.ingestion.loader import load_document_text
@@ -15,7 +15,7 @@ raw_text = load_document_text(filepath)
 clened_text = clean_text(raw_text)
 
 # Step 3: chunk_text_by_sentences takes that string, returns a list of smaller text chunks
-chunks = chunk_text_by_sentences(clened_text)
+chunks = chunk_text_recursive(clened_text)
 
 # Step 3: build_chunks_with_metadata takes the chunk list + filepath, returns list of dicts with metadata attached
 tagged_chunks = build_chunks_with_metadata(chunks, filepath)
