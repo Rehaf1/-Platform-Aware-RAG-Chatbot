@@ -26,5 +26,5 @@ def load_document_text(filepath: str) -> str:
     else:
         raise ValueError(f"Unsupported file type: {ext}")
     
-text = load_document_text("/Users/rehaf/Downloads/control_management_guide.pdf")
-print(text[:300])
+#text = load_document_text("/Users/rehaf/Downloads/control_management_guide.pdf")
+#print(text[:300])
