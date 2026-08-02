@@ -12,10 +12,15 @@ def chunk_text_fixed(text, chunk_size=50, overlap=10):
         start = end - overlap
     return chunks 
 
-
-
 # improved the splitting by sentence to actually intake diffrent cases 
 SENTENCE_SPLIT_REGEX = r'(?<=[.!?])\s+'
+
+HEADING_PATTERNS = [
+    r'^#{1,6}\s+(.+)',              # Markdown: captures text after the #'s
+    r'^Section:\s*(.+)',            # captures text after "Section:"
+    r'^Chapter\s+\d+[:.]?\s*(.+)',  # captures text after "Chapter N:"
+    r'^\d+(?:\.\d+)*\s+(.+)',       # captures text after the number
+]
 
 def split_into_units(text, chunk_size, separators):
     """
@@ -93,9 +98,64 @@ def chunk_text_recursive(text, chunk_size=50, overlap=10):
     units = split_into_units(text, chunk_size, separators=["\n\n", SENTENCE_SPLIT_REGEX])
     return pack_units_into_chunks(units, chunk_size, overlap)
 
-# wont use this stat
 
-def chunk_text_structural_aware(text, chunk_size=50, overlap=10):
-    # your code here
-    pass
+
+
+def is_heading(line: str, patterns: list[str] = None) -> bool:
+    if patterns is None:
+        patterns = HEADING_PATTERNS
+    line = line.strip()
+    return any(re.match(pattern, line) for pattern in patterns)
+
+
+def clean_heading_text(line: str, patterns: list[str] = None) -> str:
+    if patterns is None:
+        patterns = HEADING_PATTERNS
+    line = line.strip()
+    for pattern in patterns:
+        match = re.match(pattern, line)
+        if match:
+            return match.group(1).strip()
+    return line
+
+def split_by_headings(text: str, patterns: list[str] = None) -> list[tuple[str, str]]:
+    """
+    Splits text into (section_name, section_text) pairs using heading detection.
+    Text before the first detected heading is grouped under section_name=None.
+    """
+    lines = text.splitlines()
+
+    sections = []
+    current_section_name = None
+    current_lines = []
+
+    for line in lines:
+        if is_heading(line, patterns):
+            # close out whatever we were accumulating before this heading
+            if current_lines:
+                sections.append((current_section_name, "\n".join(current_lines)))
+
+            current_section_name = clean_heading_text(line, patterns)
+            current_lines = []
+        else:
+            current_lines.append(line)
+
+    # don't forget the last section — nothing comes after it to trigger a close-out
+    if current_lines:
+        sections.append((current_section_name, "\n".join(current_lines)))
+
+    return sections
+
+def chunk_text_structural_aware(text, chunk_size=50, overlap=10, patterns=None):
+    sections = split_by_headings(text, patterns)
+    
+    all_chunks = []
+    for section_name, section_text in sections:
+        units = split_into_units(section_text, chunk_size, separators=["\n\n", SENTENCE_SPLIT_REGEX])
+        section_chunks = pack_units_into_chunks(units, chunk_size, overlap)
+        
+        for chunk_text in section_chunks:
+            all_chunks.append((section_name, chunk_text))
+    
+    return all_chunks
 
