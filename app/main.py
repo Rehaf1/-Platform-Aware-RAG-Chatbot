@@ -7,6 +7,7 @@ from typing import List, Optional, Dict, Any
 from app.auth.jwt_auth import get_trusted_context, TrustedContext
 from app.generation.orchestrator import generate_answer
 from app.generation.query_preprocessing import preprocess_query
+from app.api.audit_log import log_chat_request
 
 app = FastAPI(title="APTWatch Platform-Aware RAG Chatbot", version="0.1.0")
 
@@ -48,9 +49,8 @@ def chat(
     request: ChatRequest,
     ctx: TrustedContext = Depends(get_trusted_context),
 ) -> ChatResponse:
-    """
-    ctx يجي من التوكن الموثوق (JWT) تلقائياً.
-    """
+    start = time.perf_counter()
+
     try:
         clean_question = preprocess_query(request.question)
     except ValueError as exc:
@@ -65,6 +65,18 @@ def chat(
         language=request.language,
         product_version=request.product_version,
         conversation_history=request.conversation_history,
+    )
+
+    latency_ms = (time.perf_counter() - start) * 1000
+    log_chat_request(
+        platform_id=ctx.platform_id,
+        tenant_id=ctx.tenant_id,
+        user_id=ctx.user_id,
+        user_role=ctx.user_role,
+        grounded=result["grounded"],
+        fallback_used=result["fallback_used"],
+        num_citations=len(result["citations"]),
+        latency_ms=latency_ms,
     )
 
     return ChatResponse(**result)
