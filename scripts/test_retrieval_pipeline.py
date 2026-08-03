@@ -1,4 +1,3 @@
-
 from app.retrieval.retriever import retrieve
 from app.generation.prompts import build_messages
 from app.generation.citations import build_citations
