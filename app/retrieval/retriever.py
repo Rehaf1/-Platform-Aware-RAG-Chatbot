@@ -23,6 +23,7 @@ class RetrievedChunk:
     access_level: Optional[str]
     roles: List[str]
     chunk_index: int
+    section: Optional[str]
     source_path: str
     score: float  # cosine similarity after any version boost, higher = better
 
@@ -109,6 +110,7 @@ def retrieve(
                 access_level=meta.get("access_level") or None,
                 roles=[r for r in meta.get("roles", "").split(",") if r],
                 chunk_index=meta.get("chunk_index", -1),
+                section=meta.get("section") or None,
                 source_path=meta.get("source_path", ""),
                 score=score,
             )
