@@ -1,4 +1,3 @@
-
 from app.retrieval.retriever import retrieve
 from app.generation.prompts import build_messages
 from app.generation.citations import build_citations
@@ -32,30 +31,16 @@ def ask(question: str, *, platform_id: str, tenant_id: str, language: str = "en"
 
     print("Retrieved", len(result.chunks), "chunk(s), top score:", round(result.chunks[0].score, 3))
     print("System prompt (first 120 chars):", messages[0]["content"][:120].replace("\n", " "), "...")
-    print("Citations:", citations)
+    print("Citations:")
+    for c in citations:
+        section_info = f" — {c['section']}" if c['section'] else ""
+        print(f"  • {c['document_name']}{section_info}")
+        print(f"    \"{c['excerpt'][:100].strip()}...\"")
     # messages would go to the LLM here (LLM call is a separate,
     # swappable-provider concern — not this module's job).
 
 
 if __name__ == "__main__":
-    # Matches the tagged chunk written by scripts/test_pipeline.py
-    ask("How do I assign a control owner", platform_id="imtithal", tenant_id="demo_tenant")
-
-    # TC-03 style: same question, wrong platform -> must fall back
-    ask("What is this document about?", platform_id="emdad", tenant_id="demo_tenant")
-
-    # TC-04 style: unrelated question -> must fall back
+    ask("How do I assign a control owner?", platform_id="imtithal", tenant_id="demo_tenant")
+    ask("How do I assign a control owner?", platform_id="emdad", tenant_id="demo_tenant")
     ask("How do I file a tax return in Germany?", platform_id="imtithal", tenant_id="demo_tenant")
-    
-    result = retrieve(
-    query="What is this document about?",
-    platform_id="imtithal",
-    tenant_id="demo_tenant",
-    similarity_threshold=0.0,  # temporarily accept anything, just to see real scores
-)
-
-    for chunk in result.chunks:
-        print(f"score={chunk.score:.3f} | {chunk.text[:80]}")
-
-
-
