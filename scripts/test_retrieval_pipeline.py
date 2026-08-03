@@ -1,7 +1,7 @@
 
 from app.retrieval.retriever import retrieve
 from app.generation.prompts import build_messages
-from app.generation.citation import build_citations
+from app.generation.citations import build_citations
 from app.generation.grounding import should_fallback, controlled_fallback
 
 
@@ -39,10 +39,23 @@ def ask(question: str, *, platform_id: str, tenant_id: str, language: str = "en"
 
 if __name__ == "__main__":
     # Matches the tagged chunk written by scripts/test_pipeline.py
-    ask("What is this document about?", platform_id="imtithal", tenant_id="demo_tenant")
+    ask("How do I assign a control owner", platform_id="imtithal", tenant_id="demo_tenant")
 
     # TC-03 style: same question, wrong platform -> must fall back
     ask("What is this document about?", platform_id="emdad", tenant_id="demo_tenant")
 
     # TC-04 style: unrelated question -> must fall back
     ask("How do I file a tax return in Germany?", platform_id="imtithal", tenant_id="demo_tenant")
+    
+    result = retrieve(
+    query="What is this document about?",
+    platform_id="imtithal",
+    tenant_id="demo_tenant",
+    similarity_threshold=0.0,  # temporarily accept anything, just to see real scores
+)
+
+    for chunk in result.chunks:
+        print(f"score={chunk.score:.3f} | {chunk.text[:80]}")
+
+
+
