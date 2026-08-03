@@ -1,0 +1,13 @@
+IMTITHAL Control Management Guide
+
+Section: Assigning Responsibilities
+
+Every control within the IMTITHAL platform must have a designated control owner. The control owner is responsible for monitoring the control's effectiveness, updating its status, and responding to audit findings related to it.
+
+To assign a control owner, navigate to the control details page. From there, select the "Assign Owner" option and choose the appropriate user from the list of available compliance staff. Only users with the compliance_manager or auditor role are eligible to be assigned as control owners.
+
+Once a control owner is assigned, they will receive a notification and the control's status will be updated to reflect the new assignment. Control owners can be reassigned at any time by an administrator or a compliance manager with sufficient permissions.
+
+Section: Reviewing Control Status
+
+Control owners are expected to review their assigned controls on a regular basis, typically every quarter. During a review, the owner should verify that the control is still operating as intended and update any supporting evidence or documentation.

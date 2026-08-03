@@ -19,7 +19,7 @@ def build_chunks_with_metadata(
 
     path = Path(filepath)
     platform_id = path.parent.name
-    document_name = path.stem
+    document_name = path.name
 
     chunks = []
 
