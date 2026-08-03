@@ -4,7 +4,7 @@ from app.ingestion.metadata import build_chunks_with_metadata
 from app.ingestion.loader import load_document_text
 from app.retrieval.vector_store import add_chunks_to_store, collection
 from app.ingestion.embeddings import embed_texts
-from app.ingestion.collection_and_validation import collect_documents
+from app.ingestion.collection_and_validation import collect_documents , validate_document
 
 
 filepath = "sample_data/imtithal/control_management_guide.pdf"  # <- update to your real file's actual path
@@ -52,3 +52,4 @@ for name, content in sections:
     
 docs = collect_documents("sample_data")
 print(docs)
+print(validate_document("sample_data/imtithal/nonexisten.pdf"))
