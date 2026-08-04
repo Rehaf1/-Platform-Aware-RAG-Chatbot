@@ -1,0 +1,16 @@
+{
+  "imtithal:arabic_test.txt": {
+    "history": [
+      {
+        "version": "1.0",
+        "timestamp": "2026-08-04T19:22:34.560437+00:00",
+        "chunk_count": 2
+      }
+    ],
+    "last_attempt_status": "indexed",
+    "last_attempt_time": "2026-08-04T19:22:34.560437+00:00",
+    "status": "indexed",
+    "version": "1.0",
+    "chunk_count": 2
+  }
+}

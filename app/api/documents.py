@@ -9,7 +9,7 @@ from app.ingestion.loader import load_document_text
 from app.ingestion.cleaning import clean_text
 from app.ingestion.chunking import chunk_text_structural_aware
 from app.ingestion.metadata import build_chunks_with_metadata
-
+from app.ingestion.document_status import set_status, get_status
 
 from app.ingestion.duplicate_detection import (
     hash_text, load_registry, save_registry, is_duplicate, normalize_for_hashing,
@@ -18,35 +18,52 @@ from app.retrieval.vector_store import add_chunks_to_store, collection
 router = APIRouter()
 REGISTRY_PATH = "ingested_documents.json"
 
+
+@router.get("/documents/{document_name}/status")
+def get_document_status(
+    document_name: str,
+    ctx: TrustedContext = Depends(require_admin),
+):
+    return get_status(ctx.platform_id, document_name)
+
 def _ingest_file(filepath: str, ctx: TrustedContext, module=None, access_level=None, roles=None, version="1.0") -> int:
     """Runs the full ingestion pipeline on a file already sitting on disk. Returns chunk count."""
-    raw_text = load_document_text(filepath)
-    cleaned_text = clean_text(raw_text)
+    document_name = Path(filepath).name
+    set_status(ctx.platform_id, document_name, "processing", version=version)
 
-    registry = load_registry(REGISTRY_PATH)
-    text_hash = hash_text(normalize_for_hashing(cleaned_text))
-    if is_duplicate(text_hash, registry):
-        raise HTTPException(status_code=http_status.HTTP_409_CONFLICT, detail="Duplicate content already ingested")
-    registry[text_hash] = {"document_name": Path(filepath).name}
-    save_registry(registry, REGISTRY_PATH)
+    try:
+        raw_text = load_document_text(filepath)
+        cleaned_text = clean_text(raw_text)
 
-    structured_chunks = chunk_text_structural_aware(cleaned_text)
-    chunk_strings = [c for _, c in structured_chunks]
-    sections = [s for s, _ in structured_chunks]
+        registry = load_registry(REGISTRY_PATH)
+        text_hash = hash_text(normalize_for_hashing(cleaned_text))
+        if is_duplicate(text_hash, registry):
+            raise HTTPException(status_code=http_status.HTTP_409_CONFLICT, detail="Duplicate content already ingested")
+        registry[text_hash] = {"document_name": document_name}
+        save_registry(registry, REGISTRY_PATH)
 
-    tagged_chunks = build_chunks_with_metadata(
-        chunk_strings=chunk_strings,
-        filepath=filepath,
-        sections=sections,
-        tenant_id=ctx.tenant_id,
-        module=module,
-        access_level=access_level,
-        roles=roles.split(",") if roles else [],
-        version=version,
-    )
-    add_chunks_to_store(tagged_chunks)
-    return len(tagged_chunks)
+        structured_chunks = chunk_text_structural_aware(cleaned_text)
+        chunk_strings = [c for _, c in structured_chunks]
+        sections = [s for s, _ in structured_chunks]
 
+        tagged_chunks = build_chunks_with_metadata(
+            chunk_strings=chunk_strings,
+            filepath=filepath,
+            sections=sections,
+            tenant_id=ctx.tenant_id,
+            module=module,
+            access_level=access_level,
+            roles=roles.split(",") if roles else [],
+            version=version,
+        )
+        add_chunks_to_store(tagged_chunks)
+
+        set_status(ctx.platform_id, document_name, "indexed", version=version, chunk_count=len(tagged_chunks))
+        return len(tagged_chunks)
+
+    except Exception as exc:
+        set_status(ctx.platform_id, document_name, "failed", error=str(exc))
+        raise
 
 @router.post("/documents/upload")
 def upload_document(
