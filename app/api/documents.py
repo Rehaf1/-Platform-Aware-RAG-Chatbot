@@ -18,6 +18,34 @@ from app.retrieval.vector_store import add_chunks_to_store, collection
 router = APIRouter()
 REGISTRY_PATH = "ingested_documents.json"
 
+def _ingest_file(filepath: str, ctx: TrustedContext, module=None, access_level=None, roles=None, version="1.0") -> int:
+    """Runs the full ingestion pipeline on a file already sitting on disk. Returns chunk count."""
+    raw_text = load_document_text(filepath)
+    cleaned_text = clean_text(raw_text)
+
+    registry = load_registry(REGISTRY_PATH)
+    text_hash = hash_text(normalize_for_hashing(cleaned_text))
+    if is_duplicate(text_hash, registry):
+        raise HTTPException(status_code=http_status.HTTP_409_CONFLICT, detail="Duplicate content already ingested")
+    registry[text_hash] = {"document_name": Path(filepath).name}
+    save_registry(registry, REGISTRY_PATH)
+
+    structured_chunks = chunk_text_structural_aware(cleaned_text)
+    chunk_strings = [c for _, c in structured_chunks]
+    sections = [s for s, _ in structured_chunks]
+
+    tagged_chunks = build_chunks_with_metadata(
+        chunk_strings=chunk_strings,
+        filepath=filepath,
+        sections=sections,
+        tenant_id=ctx.tenant_id,
+        module=module,
+        access_level=access_level,
+        roles=roles.split(",") if roles else [],
+        version=version,
+    )
+    add_chunks_to_store(tagged_chunks)
+    return len(tagged_chunks)
 
 
 @router.post("/documents/upload")
@@ -33,48 +61,68 @@ def upload_document(
     platform_dir.mkdir(parents=True, exist_ok=True)
 
     save_path = platform_dir / file.filename
+    file_existed_before = save_path.exists()  # remember this BEFORE writing anything
+
     with open(save_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    # Step 1: validate (existence/type/size)
     is_valid, reason = validate_document(str(save_path))
     if not is_valid:
-        save_path.unlink()  # clean up the bad file we just wrote
+        if not file_existed_before:
+            save_path.unlink()  # only delete if WE created it
         raise HTTPException(status_code=http_status.HTTP_400_BAD_REQUEST, detail=reason)
 
-    # Step 2: load + clean
-    raw_text = load_document_text(str(save_path))
-    cleaned_text = clean_text(raw_text)
+    try:
+        chunk_count = _ingest_file(str(save_path), ctx, module, access_level, roles, version)
+    except HTTPException:
+        if not file_existed_before:
+            save_path.unlink()  # same guard here
+        raise
 
-    # Step 3: duplicate check
+    return {"document_name": file.filename, "platform_id": ctx.platform_id, "chunks_stored": chunk_count, "collection_count": collection.count()}
+
+def _remove_from_registry(document_name: str, registry: dict) -> dict:
+    """
+    Returns a new registry dict with any entries matching document_name removed.
+    """
+    return {
+        h: info
+        for h, info in registry.items()
+        if info.get("document_name") != document_name
+    }
+
+
+def _delete_document_chunks(document_name: str, ctx: TrustedContext) -> None:
+    where_filter = {
+        "$and": [
+            {"platform_id": ctx.platform_id},
+            {"tenant_id": ctx.tenant_id},
+            {"document_name": document_name},
+        ]
+    }
+    collection.delete(where=where_filter)
+
     registry = load_registry(REGISTRY_PATH)
-    text_hash = hash_text(normalize_for_hashing(cleaned_text))
-    if is_duplicate(text_hash, registry):
-        save_path.unlink()
-        raise HTTPException(status_code=http_status.HTTP_409_CONFLICT, detail="Duplicate content already ingested")
-    registry[text_hash] = {"document_name": file.filename}
+    registry = _remove_from_registry(document_name, registry)
     save_registry(registry, REGISTRY_PATH)
 
-    # Step 4: chunk + tag + store
-    structured_chunks = chunk_text_structural_aware(cleaned_text)
-    chunk_strings = [c for _, c in structured_chunks]
-    sections = [s for s, _ in structured_chunks]
 
-    tagged_chunks = build_chunks_with_metadata(
-        chunk_strings=chunk_strings,
-        filepath=str(save_path),
-        sections=sections,
-        tenant_id=ctx.tenant_id,
-        module=module,
-        access_level=access_level,
-        roles=roles.split(",") if roles else [],
-        version=version,
-    )
-    add_chunks_to_store(tagged_chunks)
+@router.delete("/documents/{document_name}")
+def delete_document(document_name: str, ctx: TrustedContext = Depends(require_admin)):
+    _delete_document_chunks(document_name, ctx)
+    return {"deleted": document_name, "platform_id": ctx.platform_id}
 
-    return {
-        "document_name": file.filename,
-        "platform_id": ctx.platform_id,
-        "chunks_stored": len(tagged_chunks),
-        "collection_count": collection.count(),
-    }
+@router.post("/documents/{document_name}/reindex")
+def reindex_document(
+    document_name: str,
+    ctx: TrustedContext = Depends(require_admin),
+):
+    filepath = Path("sample_data") / ctx.platform_id / document_name
+
+    if not filepath.is_file():
+        raise HTTPException(status_code=http_status.HTTP_404_NOT_FOUND, detail=f"{document_name} not found on disk")
+
+    _delete_document_chunks(document_name, ctx)
+    chunk_count = _ingest_file(str(filepath), ctx)
+
+    return {"reindexed": document_name, "platform_id": ctx.platform_id, "chunks_stored": chunk_count}
