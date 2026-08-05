@@ -60,6 +60,7 @@ def retrieve(
     top_k: int = DEFAULT_TOP_K,
     similarity_threshold: float = DEFAULT_SIMILARITY_THRESHOLD,
 ) -> RetrievalResult:
+    
     if not platform_id or not tenant_id:
         raise ValueError(
             "platform_id and tenant_id are required and must come from "
