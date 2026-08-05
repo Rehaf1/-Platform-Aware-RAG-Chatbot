@@ -9,7 +9,7 @@ from app.generation.grounding import (
     validate_answer_is_grounded,
 )
 from app.generation.llm_client import call_llm
-
+from app.generation.unanswered_log import log_unanswered_question
 
 def generate_answer(
     question: str,
@@ -37,6 +37,7 @@ def generate_answer(
     )
 
     if should_fallback(retrieval_result):
+        log_unanswered_question(question, platform_id, tenant_id)
         return {
             "answer": controlled_fallback(language),
             "citations": [],

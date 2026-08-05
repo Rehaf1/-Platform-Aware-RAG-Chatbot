@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 load_dotenv(".env")
 import time
 from fastapi import FastAPI, Depends, HTTPException
+from app.api.documents import router as documents_router
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any
 from app.auth.jwt_auth import get_trusted_context, TrustedContext
@@ -10,7 +11,7 @@ from app.generation.query_preprocessing import preprocess_query
 from app.api.audit_log import log_chat_request
 
 app = FastAPI(title="APTWatch Platform-Aware RAG Chatbot", version="0.1.0")
-
+app.include_router(documents_router, prefix="/api/v1")
 
 @app.get("/health")
 def health() -> Dict[str, str]:

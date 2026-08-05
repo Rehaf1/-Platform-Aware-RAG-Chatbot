@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+chroma_data/
+ingested_documents.json
+document_status.json
+.git/
+.pytest_cache/
