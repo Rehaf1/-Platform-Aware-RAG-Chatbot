@@ -12,5 +12,74 @@
     "status": "indexed",
     "version": "1.0",
     "chunk_count": 2
+  },
+  "imtithal:isolation_test_doc.txt": {
+    "history": [
+      {
+        "version": "1.0",
+        "timestamp": "2026-08-05T05:27:10.114110+00:00",
+        "chunk_count": 1
+      }
+    ],
+    "last_attempt_status": "failed",
+    "last_attempt_time": "2026-08-05T05:33:52.009382+00:00",
+    "status": "failed",
+    "version": "1.0",
+    "chunk_count": 1,
+    "last_error": "409: Duplicate content already ingested"
+  },
+  "emdad:shared_name_test.txt": {
+    "history": [
+      {
+        "version": "1.0",
+        "timestamp": "2026-08-05T05:27:10.144305+00:00",
+        "chunk_count": 1
+      },
+      {
+        "version": "1.0",
+        "timestamp": "2026-08-05T05:32:30.410347+00:00",
+        "chunk_count": 1
+      },
+      {
+        "version": "1.0",
+        "timestamp": "2026-08-05T05:33:52.043091+00:00",
+        "chunk_count": 1
+      }
+    ],
+    "last_attempt_status": "indexed",
+    "last_attempt_time": "2026-08-05T05:33:52.043091+00:00",
+    "status": "indexed",
+    "version": "1.0",
+    "chunk_count": 1
+  },
+  "imtithal:tenant_isolation_doc.txt": {
+    "history": [
+      {
+        "version": "1.0",
+        "timestamp": "2026-08-05T05:32:30.772239+00:00",
+        "chunk_count": 1
+      }
+    ],
+    "last_attempt_status": "failed",
+    "last_attempt_time": "2026-08-05T05:33:52.051390+00:00",
+    "status": "failed",
+    "version": "1.0",
+    "chunk_count": 1,
+    "last_error": "409: Duplicate content already ingested"
+  },
+  "imtithal:admin_only_doc.txt": {
+    "history": [
+      {
+        "version": "1.0",
+        "timestamp": "2026-08-05T05:32:30.852182+00:00",
+        "chunk_count": 1
+      }
+    ],
+    "last_attempt_status": "failed",
+    "last_attempt_time": "2026-08-05T05:33:53.255633+00:00",
+    "status": "failed",
+    "version": "1.0",
+    "chunk_count": 1,
+    "last_error": "409: Duplicate content already ingested"
   }
 }
