@@ -10,7 +10,7 @@ from app.ingestion.cleaning import clean_text
 from app.ingestion.chunking import chunk_text_structural_aware
 from app.ingestion.metadata import build_chunks_with_metadata
 from app.ingestion.document_status import set_status, get_status
-
+from app.generation.unanswered_log import get_unanswered_questions
 from app.ingestion.duplicate_detection import (
     hash_text, load_registry, save_registry, is_duplicate, normalize_for_hashing,
 )
@@ -143,3 +143,16 @@ def reindex_document(
     chunk_count = _ingest_file(str(filepath), ctx)
 
     return {"reindexed": document_name, "platform_id": ctx.platform_id, "chunks_stored": chunk_count}
+
+
+
+@router.get("/documents/unanswered-questions")
+def view_unanswered_questions(
+    ctx: TrustedContext = Depends(require_admin),
+):
+    questions = get_unanswered_questions(platform_id=ctx.platform_id)
+    return {
+        "platform_id": ctx.platform_id,
+        "count": len(questions),
+        "questions": questions,
+    }

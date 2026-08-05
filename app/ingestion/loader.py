@@ -1,19 +1,22 @@
 from pathlib import Path
 import pypdf
 import docx2txt
+import pytesseract
+from pdf2image import convert_from_path
+
 
 def load_document_text(filepath: str) -> str:
-    """
-    Extracts raw text from a document, regardless of format.
-    Uses pypdf and docx2txt directly (no LangChain wrapper needed —
-    the wrapper added no real value and is being deprecated anyway).
-    """
     ext = Path(filepath).suffix.lower()
 
     if ext == ".pdf":
         reader = pypdf.PdfReader(filepath)
         pages_text = [page.extract_text() or "" for page in reader.pages]
-        return "\n\n".join(pages_text)
+        combined_text = "\n\n".join(pages_text)
+
+        if _needs_ocr(pages_text):
+            combined_text = _ocr_pdf(filepath)
+
+        return combined_text
 
     elif ext == ".docx":
         return docx2txt.process(filepath)
@@ -24,3 +27,15 @@ def load_document_text(filepath: str) -> str:
 
     else:
         raise ValueError(f"Unsupported file type: {ext}")
+
+
+def _needs_ocr(pages_text: list[str]) -> bool:
+    """A PDF needs OCR if extraction produced essentially no real text."""
+    total_chars = sum(len(p.strip()) for p in pages_text)
+    return total_chars < 20  # arbitrary small threshold — a real PDF page has far more than this
+
+
+def _ocr_pdf(filepath: str) -> str:
+    images = convert_from_path(filepath)
+    page_texts = [pytesseract.image_to_string(img) for img in images]
+    return "\n\n".join(page_texts)
