@@ -1,6 +1,7 @@
 
 import shutil
 from pathlib import Path
+from collections import Counter
 from fastapi import APIRouter, Depends, UploadFile, File, Form, HTTPException, status as http_status
 from app.auth.authorization import require_admin
 from app.auth.jwt_auth import TrustedContext
@@ -9,8 +10,10 @@ from app.ingestion.loader import load_document_text
 from app.ingestion.cleaning import clean_text
 from app.ingestion.chunking import chunk_text_structural_aware
 from app.ingestion.metadata import build_chunks_with_metadata
-from app.ingestion.document_status import set_status, get_status
+from app.ingestion.document_status import set_status, get_status, load_status_registry, save_status_registry
 from app.generation.unanswered_log import get_unanswered_questions
+from app.generation.unanswered_log import get_unanswered_questions
+from app.ingestion.summarization import summarize_document
 from app.ingestion.duplicate_detection import (
     hash_text, load_registry, save_registry, is_duplicate, normalize_for_hashing,
 )
@@ -57,6 +60,13 @@ def _ingest_file(filepath: str, ctx: TrustedContext, module=None, access_level=N
             version=version,
         )
         add_chunks_to_store(tagged_chunks)
+
+        summary = summarize_document(cleaned_text)
+        set_status(ctx.platform_id, document_name, "indexed", version=version, chunk_count=len(tagged_chunks))
+
+        registry_status = load_status_registry()
+        registry_status[f"{ctx.platform_id}:{document_name}"]["summary"] = summary
+        save_status_registry(registry_status)   
 
         set_status(ctx.platform_id, document_name, "indexed", version=version, chunk_count=len(tagged_chunks))
         return len(tagged_chunks)
@@ -155,4 +165,20 @@ def view_unanswered_questions(
         "platform_id": ctx.platform_id,
         "count": len(questions),
         "questions": questions,
+    }
+    
+    
+
+
+@router.get("/documents/frequently-asked")
+def frequently_asked_unanswered(
+    ctx: TrustedContext = Depends(require_admin),
+):
+    questions = get_unanswered_questions(platform_id=ctx.platform_id)
+    question_texts = [q["question"] for q in questions]
+    counts = Counter(question_texts)
+    top = counts.most_common(10)
+    return {
+        "platform_id": ctx.platform_id,
+        "top_unanswered_questions": [{"question": q, "times_asked": n} for q, n in top]
     }
