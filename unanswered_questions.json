@@ -5,5 +5,19 @@
     "tenant_id": "demo_tenant",
     "reason": "insufficient_evidence",
     "timestamp": "2026-08-05T07:56:23.975975+00:00"
+  },
+  {
+    "question": "How do I assign a control owner?",
+    "platform_id": "imtithal",
+    "tenant_id": "tenant_b",
+    "reason": "insufficient_evidence",
+    "timestamp": "2026-08-05T14:47:13.803592+00:00"
+  },
+  {
+    "question": "How do I create a new supplier?",
+    "platform_id": "imtithal",
+    "tenant_id": "demo_tenant",
+    "reason": "insufficient_evidence",
+    "timestamp": "2026-08-05T14:47:13.840869+00:00"
   }
 ]

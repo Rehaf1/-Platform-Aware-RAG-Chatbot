@@ -6,3 +6,5 @@ chroma_data/
 .DS_Store
 tempCodeRunnerFile.python
 ingested_documents.json
+test_api.py
+test_answer.py

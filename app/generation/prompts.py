@@ -72,6 +72,7 @@ def _format_evidence_block(chunks: List[RetrievedChunk], language: str) -> str:
     lines = [header]
     for i, chunk in enumerate(chunks, start=1):
         lines.append(f"[{i}] {chunk.document_name} (v{chunk.version or 'n/a'}): {chunk.text}")
+        #[1] User Guide (v2.0): To reset your password...
     return "\n".join(lines)
 
 
