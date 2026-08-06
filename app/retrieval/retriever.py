@@ -76,7 +76,7 @@ def retrieve(
     if module:
         where_conditions.append({"module": module})
     where_clause = {"$and": where_conditions} if len(where_conditions) > 1 else where_conditions[0]
-
+     #Chroma
     raw = collection.query(
         query_embeddings=[query_embedding],
         n_results=max(top_k * CANDIDATE_MULTIPLIER, top_k),

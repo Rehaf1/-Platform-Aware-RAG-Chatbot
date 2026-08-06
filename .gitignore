@@ -7,3 +7,4 @@ chroma_data/
 tempCodeRunnerFile.python
 ingested_documents.json
 test_api.py
+test_answer.py
