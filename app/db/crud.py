@@ -11,6 +11,9 @@ from app.db.models import (
     Message,
     Citation,
     AuditLog,
+    Document,
+    DocumentVersion,
+    DocumentChunk,
 )
 
 
@@ -136,6 +139,7 @@ def add_message(
     return message
 
 
+
 def add_citations(db: Session, message: Message, citations: List[Dict[str, Any]]) -> None:
     for c in citations:
         db.add(
@@ -151,6 +155,74 @@ def add_citations(db: Session, message: Message, citations: List[Dict[str, Any]]
     db.commit()
 
 
+# ---------------------------------------------------------------------------
+# create_document / document_versions / document_chunks
+# ---------------------------------------------------------------------------
+
+def create_document(
+    db: Session,
+    platform: Platform,
+    tenant: Tenant,
+    document_name: str,
+    module: Optional[str] = None,
+    language: Optional[str] = None,
+    access_level: Optional[str] = None,
+) -> Document:
+    document = Document(
+        document_name=document_name,
+        platform_id=platform.id,
+        tenant_id=tenant.id,
+        module=module,
+        language=language,
+        access_level=access_level,
+    )
+    db.add(document)
+    db.commit()
+    db.refresh(document)
+    return document
+    
+
+
+def create_document_version(
+    db: Session,
+    document: Document,
+    version: str,
+    source_path: Optional[str] = None,
+) -> DocumentVersion:
+    document_version = DocumentVersion(
+        document_id=document.id,
+        version=version,
+        source_path=source_path,
+    )
+
+    db.add(document_version)
+    db.commit()
+    db.refresh(document_version)
+
+    return document_version
+
+
+def create_document_chunks(
+    db: Session,
+    document_version: DocumentVersion,
+    chunks: List[Dict[str, Any]],  # each dict: {"chunk_index": int, "section": str, "vector_id": str}
+) -> List[DocumentChunk]:
+    chunk_rows = []
+    for chunk in chunks:
+        chunk_row = DocumentChunk(
+            document_version_id=document_version.id,
+            chunk_index=chunk["chunk_index"],
+            section=chunk.get("section"),
+            vector_id=chunk["vector_id"],
+        )
+        db.add(chunk_row)
+        chunk_rows.append(chunk_row)
+
+    db.commit()
+    for chunk_row in chunk_rows:
+        db.refresh(chunk_row)
+
+    return chunk_rows
 # ---------------------------------------------------------------------------
 # Audit log persistence — mirrors app/api/audit_log.py's fields, but saved
 # to the database instead of (or in addition to) stdout.
