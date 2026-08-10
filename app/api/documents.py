@@ -22,7 +22,7 @@ from app.db.database import SessionLocal
 from app.db.crud import (
     get_or_create_platform,
     get_or_create_tenant,
-    create_document,
+    get_or_create_document,
     create_document_version,
     create_document_chunks,
 )
@@ -78,20 +78,29 @@ def _ingest_file(filepath: str, ctx: TrustedContext, module=None, access_level=N
             }
             for i in range(len(sections))
         ]
+        document_row = None
         try:
             db = SessionLocal()
             platform_row = get_or_create_platform(db, ctx.platform_id)
             tenant_row = get_or_create_tenant(db, platform_row, ctx.tenant_id)
-            document_row = create_document(
+            document_row = get_or_create_document(
                 db, platform_row, tenant_row, document_name,
                 module=module, language="en", access_level=access_level,
                 )
             version_row = create_document_version(db, document_row, version, source_path=filepath)
             create_document_chunks(db, version_row, chunk_records)
+            document_row.status = "indexed"
+            db.commit()
             db.close()
         except Exception as exc:
             print(f"[warning] failed to persist document to database: {exc}")
-            
+            if document_row is not None:
+                try:
+                    document_row.status = "failed"
+                    db.commit()
+                except Exception:
+                    pass  # if even this fails, we've already logged the original error above
+            db.close()
         summary = summarize_document(cleaned_text)
         set_status(ctx.platform_id, document_name, "indexed", version=version, chunk_count=len(tagged_chunks))
 

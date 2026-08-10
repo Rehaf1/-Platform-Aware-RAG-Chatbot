@@ -156,10 +156,10 @@ def add_citations(db: Session, message: Message, citations: List[Dict[str, Any]]
 
 
 # ---------------------------------------------------------------------------
-# create_document / document_versions / document_chunks
+# get_or_create_document / document_versions / document_chunks
 # ---------------------------------------------------------------------------
 
-def create_document(
+def get_or_create_document(
     db: Session,
     platform: Platform,
     tenant: Tenant,
@@ -168,17 +168,27 @@ def create_document(
     language: Optional[str] = None,
     access_level: Optional[str] = None,
 ) -> Document:
-    document = Document(
-        document_name=document_name,
-        platform_id=platform.id,
-        tenant_id=tenant.id,
-        module=module,
-        language=language,
-        access_level=access_level,
+    document = (
+        db.query(Document)
+        .filter(
+            Document.document_name == document_name,
+            Document.platform_id == platform.id,
+            Document.tenant_id == tenant.id,
+        )
+        .first()
     )
-    db.add(document)
-    db.commit()
-    db.refresh(document)
+    if document is None:
+        document = Document(
+            document_name=document_name,
+            platform_id=platform.id,
+            tenant_id=tenant.id,
+            module=module,
+            language=language,
+            access_level=access_level,
+        )
+        db.add(document)
+        db.commit()
+        db.refresh(document)
     return document
     
 
