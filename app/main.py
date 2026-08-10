@@ -2,18 +2,20 @@ from dotenv import load_dotenv
 load_dotenv(".env")
 
 import time
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Depends, HTTPException
+from sqlalchemy import text
 from sqlalchemy.orm import Session
-from app.api.documents import router as documents_router
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any
 
+from app.api.documents import router as documents_router
 from app.auth.jwt_auth import get_trusted_context, TrustedContext
 from app.generation.orchestrator import generate_answer
 from app.generation.query_preprocessing import preprocess_query
 from app.api.audit_log import log_chat_request
-from app.db.database import get_db
+from app.db.database import engine, get_db
 from app.db.crud import (
     get_or_create_platform,
     get_or_create_tenant,
@@ -24,7 +26,19 @@ from app.db.crud import (
     log_audit_event,
 )
 
-app = FastAPI(title="APTWatch Platform-Aware RAG Chatbot", version="0.1.0")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    try:
+        with engine.connect() as conn:
+            conn.execute(text("SELECT 1"))
+        print("Database connection verified at startup.")
+    except Exception as exc:
+        raise RuntimeError(f"Could not connect to the database at startup: {exc}") from exc
+    yield
+
+
+app = FastAPI(title="APTWatch Platform-Aware RAG Chatbot", version="0.1.0", lifespan=lifespan)
 app.include_router(documents_router, prefix="/api/v1")
 
 
@@ -86,11 +100,6 @@ def chat(
 
     latency_ms = (time.perf_counter() - start) * 1000
 
-    # --- persist to PostgreSQL ---
-    # A failure here should never break the chat response itself — the
-    # answer already succeeded from the user's point of view. Isolate
-    # persistence errors so a DB hiccup doesn't turn a good answer into
-    # a 500.
     try:
         platform_row = get_or_create_platform(db, ctx.platform_id)
         tenant_row = get_or_create_tenant(db, platform_row, ctx.tenant_id)
@@ -126,8 +135,6 @@ def chat(
     except Exception as exc:  # noqa: BLE001 — persistence is best-effort here
         print(f"[warning] failed to persist chat to database: {exc}")
 
-    # Keep the existing stdout/JSON log too — cheap, and useful when the
-    # DB itself is the thing having trouble.
     log_chat_request(
         platform_id=ctx.platform_id,
         tenant_id=ctx.tenant_id,
