@@ -37,7 +37,7 @@ def get_document_status(
 ):
     return get_status(ctx.platform_id, document_name)
 
-def _ingest_file(filepath: str, ctx: TrustedContext, module=None, access_level=None, roles=None, version="1.0") -> int:
+def _ingest_file(filepath: str, ctx: TrustedContext, module=None, access_level=None, roles=None, version="1.0", skip_duplicate_check=False) -> int:
     """Runs the full ingestion pipeline on a file already sitting on disk. Returns chunk count."""
     document_name = Path(filepath).name
     set_status(ctx.platform_id, document_name, "processing", version=version)
@@ -45,13 +45,13 @@ def _ingest_file(filepath: str, ctx: TrustedContext, module=None, access_level=N
     try:
         raw_text = load_document_text(filepath)
         cleaned_text = clean_text(raw_text)
-
-        registry = load_registry(REGISTRY_PATH)
-        text_hash = hash_text(normalize_for_hashing(cleaned_text))
-        if is_duplicate(text_hash, registry):
-            raise HTTPException(status_code=http_status.HTTP_409_CONFLICT, detail="Duplicate content already ingested")
-        registry[text_hash] = {"document_name": document_name}
-        save_registry(registry, REGISTRY_PATH)
+        if not skip_duplicate_check:
+            registry = load_registry(REGISTRY_PATH)
+            text_hash = hash_text(normalize_for_hashing(cleaned_text))
+            if is_duplicate(text_hash, registry):
+                raise HTTPException(status_code=http_status.HTTP_409_CONFLICT, detail="Duplicate content already ingested")
+            registry[text_hash] = {"document_name": document_name}
+            save_registry(registry, REGISTRY_PATH)
 
         structured_chunks = chunk_text_structural_aware(cleaned_text)
         chunk_strings = [c for _, c in structured_chunks]
@@ -188,7 +188,7 @@ def reindex_document(
         raise HTTPException(status_code=http_status.HTTP_404_NOT_FOUND, detail=f"{document_name} not found on disk")
 
     _delete_document_chunks(document_name, ctx)
-    chunk_count = _ingest_file(str(filepath), ctx)
+    chunk_count = _ingest_file(str(filepath), ctx, skip_duplicate_check=True)
 
     return {"reindexed": document_name, "platform_id": ctx.platform_id, "chunks_stored": chunk_count}
 
