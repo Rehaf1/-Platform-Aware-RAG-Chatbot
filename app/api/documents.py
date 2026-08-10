@@ -67,8 +67,6 @@ def _ingest_file(filepath: str, ctx: TrustedContext, module=None, access_level=N
         registry_status = load_status_registry()
         registry_status[f"{ctx.platform_id}:{document_name}"]["summary"] = summary
         save_status_registry(registry_status)   
-
-        set_status(ctx.platform_id, document_name, "indexed", version=version, chunk_count=len(tagged_chunks))
         return len(tagged_chunks)
 
     except Exception as exc:

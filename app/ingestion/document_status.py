@@ -40,6 +40,8 @@ def set_status(
     entry["last_attempt_time"] = datetime.now(timezone.utc).isoformat()
     if error:
         entry["last_error"] = error
+    else:
+        entry.pop("last_error", None)
 
     # Don't let a failed re-upload attempt overwrite a genuinely indexed document
     if status == "failed" and was_indexed:
