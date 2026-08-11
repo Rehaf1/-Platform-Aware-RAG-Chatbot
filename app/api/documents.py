@@ -19,6 +19,7 @@ from app.ingestion.duplicate_detection import (
 )
 from app.retrieval.vector_store import add_chunks_to_store, collection
 from app.db.database import SessionLocal
+from app.db.models import Document
 from app.db.crud import (
     get_or_create_platform,
     get_or_create_tenant,
@@ -233,3 +234,38 @@ def frequently_asked_unanswered(
         "platform_id": ctx.platform_id,
         "top_unanswered_questions": [{"question": q, "times_asked": n} for q, n in top]
     }
+    
+
+@router.get("/documents")
+def list_documents(
+    ctx: TrustedContext = Depends(require_admin),
+):
+    db = SessionLocal()
+    try:
+        platform_row = get_or_create_platform(db, ctx.platform_id)
+        tenant_row = get_or_create_tenant(db, platform_row, ctx.tenant_id)
+
+        documents = (
+            db.query(Document)
+            .filter(
+                Document.platform_id == platform_row.id,
+                Document.tenant_id == tenant_row.id,
+            )
+            .all()
+        )
+
+        return {
+            "platform_id": ctx.platform_id,
+            "count": len(documents),
+            "documents": [
+                {
+                    "document_name": d.document_name,
+                    "status": d.status,
+                    "module": d.module,
+                    "language": d.language,
+                }
+                for d in documents
+            ],
+        }
+    finally:
+        db.close()
