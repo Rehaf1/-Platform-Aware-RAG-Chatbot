@@ -126,24 +126,37 @@ def upload_document(
     platform_dir.mkdir(parents=True, exist_ok=True)
 
     save_path = platform_dir / file.filename
+    backup_path = save_path.with_suffix(save_path.suffix + ".bak")
     file_existed_before = save_path.exists()  # remember this BEFORE writing anything
+    
+    if file_existed_before:
+        shutil.copy(save_path, backup_path)
 
     with open(save_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
     is_valid, reason = validate_document(str(save_path))
     if not is_valid:
-        if not file_existed_before:
-            save_path.unlink()  # only delete if WE created it
+        if file_existed_before:
+            shutil.copy(backup_path, save_path)  # restore the original content
+            backup_path.unlink()
+        else:
+            save_path.unlink()
         raise HTTPException(status_code=http_status.HTTP_400_BAD_REQUEST, detail=reason)
 
     try:
         chunk_count = _ingest_file(str(save_path), ctx, module, access_level, roles, version)
     except HTTPException:
-        if not file_existed_before:
-            save_path.unlink()  # same guard here
+        if file_existed_before:
+            shutil.copy(backup_path, save_path)
+            backup_path.unlink()
+        else:
+            save_path.unlink()
         raise
-
+    
+    
+    if file_existed_before and backup_path.exists():
+        backup_path.unlink()
     return {"document_name": file.filename, "platform_id": ctx.platform_id, "chunks_stored": chunk_count, "collection_count": collection.count()}
 
 def _remove_from_registry(document_name: str, registry: dict) -> dict:
