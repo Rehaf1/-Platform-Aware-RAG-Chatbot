@@ -19,5 +19,19 @@
     "tenant_id": "demo_tenant",
     "reason": "insufficient_evidence",
     "timestamp": "2026-08-05T14:47:13.840869+00:00"
+  },
+  {
+    "question": "hello",
+    "platform_id": "imtithal",
+    "tenant_id": "demo_tenant",
+    "reason": "insufficient_evidence",
+    "timestamp": "2026-08-13T15:22:19.258835+00:00"
+  },
+  {
+    "question": "What's the capital of Japan?",
+    "platform_id": "imtithal",
+    "tenant_id": "demo_tenant",
+    "reason": "insufficient_evidence",
+    "timestamp": "2026-08-13T15:23:49.936508+00:00"
   }
 ]
