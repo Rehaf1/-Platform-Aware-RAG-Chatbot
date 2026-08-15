@@ -1,4 +1,5 @@
 from typing import Optional, List, Dict, Any
+from uuid import UUID
 
 from sqlalchemy.orm import Session
 
@@ -10,6 +11,7 @@ from app.db.models import (
     Conversation,
     Message,
     Citation,
+    Feedback,
     AuditLog,
     Document,
     DocumentVersion,
@@ -115,6 +117,46 @@ def create_conversation(
     return conversation
 
 
+def get_conversation_for_user(
+    db: Session, conversation_id: str, user: User
+) -> Optional[Conversation]:
+    """
+    Look up an existing conversation by ID, scoped to the requesting user.
+
+    This is the core of conversation continuity: the client sends
+    conversation_id explicitly rather than the server guessing based on
+    elapsed time. Returning None (instead of raising) on a bad/foreign ID
+    is deliberate: the caller falls back to starting a new conversation
+    rather than erroring out.
+    """
+    try:
+        conv_uuid = UUID(conversation_id)
+    except (ValueError, AttributeError):
+        return None
+
+    return (
+        db.query(Conversation)
+        .filter(Conversation.id == conv_uuid, Conversation.user_id == user.id)
+        .first()
+    )
+
+
+def get_recent_messages(db: Session, conversation: Conversation, limit: int = 10) -> List[Message]:
+    """
+    Most recent `limit` messages for this conversation, oldest first --
+    ready to hand straight to prompts.build_messages()'s
+    conversation_history parameter.
+    """
+    messages = (
+        db.query(Message)
+        .filter(Message.conversation_id == conversation.id)
+        .order_by(Message.created_at.desc())
+        .limit(limit)
+        .all()
+    )
+    return list(reversed(messages))
+
+
 def add_message(
     db: Session,
     conversation: Conversation,
@@ -139,7 +181,6 @@ def add_message(
     return message
 
 
-
 def add_citations(db: Session, message: Message, citations: List[Dict[str, Any]]) -> None:
     for c in citations:
         db.add(
@@ -156,7 +197,51 @@ def add_citations(db: Session, message: Message, citations: List[Dict[str, Any]]
 
 
 # ---------------------------------------------------------------------------
-# get_or_create_document / document_versions / document_chunks
+# Feedback -- POST /api/v1/feedback backs onto this
+# ---------------------------------------------------------------------------
+
+def get_message_for_user(db: Session, message_id: str, user: User) -> Optional[Message]:
+    """
+    Feedback must only be attachable to a message the requesting user
+    actually received -- scoped through the parent conversation's
+    user_id, same trust-boundary principle as get_conversation_for_user.
+    """
+    try:
+        msg_uuid = UUID(message_id)
+    except (ValueError, AttributeError):
+        return None
+
+    return (
+        db.query(Message)
+        .join(Conversation, Message.conversation_id == Conversation.id)
+        .filter(Message.id == msg_uuid, Conversation.user_id == user.id)
+        .first()
+    )
+
+
+def add_feedback(
+    db: Session,
+    message: Message,
+    user: User,
+    *,
+    is_helpful: bool,
+    comment: Optional[str] = None,
+) -> Feedback:
+    feedback = Feedback(
+        message_id=message.id,
+        user_id=user.id,
+        is_helpful=is_helpful,
+        comment=comment,
+    )
+    db.add(feedback)
+    db.commit()
+    db.refresh(feedback)
+    return feedback
+
+
+# ---------------------------------------------------------------------------
+# Documents / document_versions / document_chunks
+# (Person A / Write Path -- kept as-is, merged back in here)
 # ---------------------------------------------------------------------------
 
 def get_or_create_document(
@@ -190,7 +275,6 @@ def get_or_create_document(
         db.commit()
         db.refresh(document)
     return document
-    
 
 
 def create_document_version(
@@ -204,11 +288,9 @@ def create_document_version(
         version=version,
         source_path=source_path,
     )
-
     db.add(document_version)
     db.commit()
     db.refresh(document_version)
-
     return document_version
 
 
@@ -233,8 +315,10 @@ def create_document_chunks(
         db.refresh(chunk_row)
 
     return chunk_rows
+
+
 # ---------------------------------------------------------------------------
-# Audit log persistence — mirrors app/api/audit_log.py's fields, but saved
+# Audit log persistence -- mirrors app/api/audit_log.py's fields, but saved
 # to the database instead of (or in addition to) stdout.
 # ---------------------------------------------------------------------------
 
