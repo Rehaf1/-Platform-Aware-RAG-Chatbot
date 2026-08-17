@@ -10,3 +10,4 @@ test_api.py
 test_answer.pyfrontend/admin/node_modules/
 frontend/admin/dist/
 frontend/admin/.env
+node_modules/
