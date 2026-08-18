@@ -169,5 +169,21 @@
     "status": "failed",
     "version": "1.0",
     "last_error": "409: Duplicate content already ingested"
+  },
+  "imtithal:sql_test.txt": {
+    "history": [],
+    "last_attempt_status": "failed",
+    "last_attempt_time": "2026-08-18T06:53:12.014934+00:00",
+    "status": "failed",
+    "version": "1.0",
+    "last_error": "409: Duplicate content already ingested"
+  },
+  "imtithal:garbage.txt": {
+    "history": [],
+    "last_attempt_status": "failed",
+    "last_attempt_time": "2026-08-18T06:53:12.369199+00:00",
+    "status": "failed",
+    "version": "1.0",
+    "last_error": "'utf-8' codec can't decode byte 0xff in position 1: invalid start byte"
   }
 }

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import { api } from "../api/client"
 import StatusBadge from "./StatusBadge"
+import { useLanguage } from "../context/LanguageContext"
 
 export default function DocumentTable({ refreshSignal }) {
+  const { t } = useLanguage()
   const [state, setState] = useState({ loading: true, error: null, documents: [] })
   const [actionInFlight, setActionInFlight] = useState(null)
 
@@ -35,60 +37,60 @@ export default function DocumentTable({ refreshSignal }) {
   }
 
   if (state.loading) {
-    return <div className="text-sm text-muted py-8 text-center">Loading documents…</div>
+    return <div className="text-sm text-muted dark:text-white/50 py-8 text-center">{t("loadingDocuments")}</div>
   }
 
   if (state.error) {
     return (
-      <div className="bg-garnet-bg text-garnet text-sm rounded-lg p-4">
-        Couldn't load documents: {state.error}
+      <div className="bg-garnet-bg dark:bg-garnet/10 text-garnet text-sm rounded-lg p-4">
+        {t("couldNotLoad")} {state.error}
       </div>
     )
   }
 
   if (state.documents.length === 0) {
     return (
-      <div className="text-center py-14 border border-dashed border-line rounded-xl">
-        <p className="text-sm text-muted">No documents yet.</p>
-        <p className="text-xs text-muted/70 mt-1">Upload one above to see it appear here.</p>
+      <div className="text-center py-14 border border-dashed border-line dark:border-white/15 rounded-xl">
+        <p className="text-sm text-muted dark:text-white/50">{t("noDocuments")}</p>
+        <p className="text-xs text-muted/70 dark:text-white/30 mt-1">{t("noDocumentsHint")}</p>
       </div>
     )
   }
 
   return (
-    <div className="border border-line rounded-xl overflow-hidden">
+    <div className="border border-line dark:border-white/10 rounded-xl overflow-hidden">
       <table className="w-full text-sm">
         <thead>
-          <tr className="bg-paper border-b border-line text-left">
-            <th className="px-4 py-3 font-semibold text-muted text-xs uppercase tracking-wide">Document</th>
-            <th className="px-4 py-3 font-semibold text-muted text-xs uppercase tracking-wide">Status</th>
-            <th className="px-4 py-3 font-semibold text-muted text-xs uppercase tracking-wide">Module</th>
-            <th className="px-4 py-3 font-semibold text-muted text-xs uppercase tracking-wide">Language</th>
-            <th className="px-4 py-3 font-semibold text-muted text-xs uppercase tracking-wide text-right">Actions</th>
+          <tr className="bg-paper dark:bg-white/5 border-b border-line dark:border-white/10 text-start">
+            <th className="px-4 py-3 font-semibold text-muted dark:text-white/60 text-xs uppercase tracking-wide text-start">{t("tableDocument")}</th>
+            <th className="px-4 py-3 font-semibold text-muted dark:text-white/60 text-xs uppercase tracking-wide text-start">{t("tableStatus")}</th>
+            <th className="px-4 py-3 font-semibold text-muted dark:text-white/60 text-xs uppercase tracking-wide text-start">{t("tableModule")}</th>
+            <th className="px-4 py-3 font-semibold text-muted dark:text-white/60 text-xs uppercase tracking-wide text-start">{t("tableLanguage")}</th>
+            <th className="px-4 py-3 font-semibold text-muted dark:text-white/60 text-xs uppercase tracking-wide text-end">{t("tableActions")}</th>
           </tr>
         </thead>
         <tbody>
           {state.documents.map((doc) => (
-            <tr key={doc.document_name} className="border-b border-line last:border-0 hover:bg-paper/60">
+            <tr key={doc.document_name} className="border-b border-line dark:border-white/10 last:border-0 hover:bg-paper/60 dark:hover:bg-white/5 dark:text-white">
               <td className="px-4 py-3 font-mono text-[13px]">{doc.document_name}</td>
               <td className="px-4 py-3"><StatusBadge status={doc.status} /></td>
-              <td className="px-4 py-3 text-muted">{doc.module || "—"}</td>
-              <td className="px-4 py-3 text-muted uppercase text-xs">{doc.language || "—"}</td>
+              <td className="px-4 py-3 text-muted dark:text-white/50">{doc.module || "—"}</td>
+              <td className="px-4 py-3 text-muted dark:text-white/50 uppercase text-xs">{doc.language || "—"}</td>
               <td className="px-4 py-3">
                 <div className="flex justify-end gap-2">
                   <button
                     onClick={() => handleReindex(doc.document_name)}
                     disabled={actionInFlight === doc.document_name + ":reindex"}
-                    className="text-xs font-medium text-indigo border border-line rounded-md px-2.5 py-1 hover:bg-indigo/5 disabled:opacity-50"
+                    className="text-xs font-medium text-indigo dark:text-white border border-line dark:border-white/20 rounded-md px-2.5 py-1 hover:bg-indigo/5 dark:hover:bg-white/10 disabled:opacity-50"
                   >
-                    {actionInFlight === doc.document_name + ":reindex" ? "Reindexing…" : "Reindex"}
+                    {actionInFlight === doc.document_name + ":reindex" ? t("reindexing") : t("reindex")}
                   </button>
                   <button
                     onClick={() => handleDelete(doc.document_name)}
                     disabled={actionInFlight === doc.document_name + ":delete"}
-                    className="text-xs font-medium text-garnet border border-garnet/20 rounded-md px-2.5 py-1 hover:bg-garnet-bg disabled:opacity-50"
+                    className="text-xs font-medium text-garnet border border-garnet/20 rounded-md px-2.5 py-1 hover:bg-garnet-bg dark:hover:bg-garnet/10 disabled:opacity-50"
                   >
-                    {actionInFlight === doc.document_name + ":delete" ? "Deleting…" : "Delete"}
+                    {actionInFlight === doc.document_name + ":delete" ? t("deleting") : t("deleteAction")}
                   </button>
                 </div>
               </td>

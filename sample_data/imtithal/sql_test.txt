@@ -1,0 +1,1 @@
+Some safe content for SQL injection test.

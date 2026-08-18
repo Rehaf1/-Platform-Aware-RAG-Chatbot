@@ -44,7 +44,10 @@ def _ingest_file(filepath: str, ctx: TrustedContext, module=None, access_level=N
     set_status(ctx.platform_id, document_name, "processing", version=version)
 
     try:
-        raw_text = load_document_text(filepath)
+        try : 
+            raw_text = load_document_text(filepath)
+        except ValueError as exc:
+            raise HTTPException(status_code=http_status.HTTP_400_BAD_REQUEST, detail=str(exc))
         cleaned_text = clean_text(raw_text)
         if not skip_duplicate_check:
             registry = load_registry(REGISTRY_PATH)

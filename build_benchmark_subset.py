@@ -11,8 +11,12 @@ paragraphs plus a question and gold answer.
 import json
 from datasets import load_dataset
 
-N_HOTPOT = 30       # how many HotpotQA questions to pull
-N_TYDI_PER_LANG = 20  # how many TyDi QA questions to pull, per language
+N_HOTPOT = 50        # how many HotpotQA questions to pull (English only)
+N_TYDI_EN = 50        # TyDi QA questions to pull, English
+N_TYDI_AR = 100       # TyDi QA questions to pull, Arabic
+# English total = N_HOTPOT + N_TYDI_EN = 100
+# Arabic total  = N_TYDI_AR                = 100
+# Grand total = 200, English/Arabic balanced 100/100
 
 
 def extract_hotpotqa(n=N_HOTPOT):
@@ -53,20 +57,21 @@ def extract_hotpotqa(n=N_HOTPOT):
     return examples
 
 
-def extract_tydiqa(n_per_lang=N_TYDI_PER_LANG, languages=("english", "arabic")):
-    print(f"Streaming TyDi QA, taking first {n_per_lang} examples per language {languages}...")
+def extract_tydiqa(counts_wanted):
+    """counts_wanted: dict like {'english': 50, 'arabic': 100}"""
+    print(f"Streaming TyDi QA, target counts: {counts_wanted}...")
     ds = load_dataset("google-research-datasets/tydiqa", "secondary_task", split="validation", streaming=True)
 
-    counts = {lang: 0 for lang in languages}
+    counts = {lang: 0 for lang in counts_wanted}
     examples = []
 
     for row in ds:
         # TyDi QA ids are prefixed with the language, e.g. "arabic-1234-..."
         row_lang = row["id"].split("-")[0].lower()
-        if row_lang not in languages:
+        if row_lang not in counts_wanted:
             continue
-        if counts[row_lang] >= n_per_lang:
-            if all(c >= n_per_lang for c in counts.values()):
+        if counts[row_lang] >= counts_wanted[row_lang]:
+            if all(counts[l] >= counts_wanted[l] for l in counts_wanted):
                 break
             continue
 
@@ -82,20 +87,25 @@ def extract_tydiqa(n_per_lang=N_TYDI_PER_LANG, languages=("english", "arabic")):
         })
         counts[row_lang] += 1
 
+    print("Actual counts pulled:", counts)
     return examples
 
 
 if __name__ == "__main__":
-    hotpot = extract_hotpotqa()
-    tydi = extract_tydiqa()
+    hotpot = extract_hotpotqa(N_HOTPOT)
+    tydi = extract_tydiqa({"english": N_TYDI_EN, "arabic": N_TYDI_AR})
 
     all_examples = {
         "hotpotqa_en": hotpot,
         "tydiqa": tydi,
     }
 
+    n_en = len(hotpot) + sum(1 for e in tydi if e["language"] == "en")
+    n_ar = sum(1 for e in tydi if e["language"] == "ar")
+
     with open("benchmark_subset.json", "w", encoding="utf-8") as f:
         json.dump(all_examples, f, ensure_ascii=False, indent=2)
 
-    print(f"\nSaved {len(hotpot)} HotpotQA examples and {len(tydi)} TyDi QA examples")
+    print(f"\nSaved {len(hotpot)} HotpotQA + {len(tydi)} TyDi QA = {len(hotpot) + len(tydi)} total")
+    print(f"English: {n_en}  |  Arabic: {n_ar}")
     print("Output: benchmark_subset.json")
