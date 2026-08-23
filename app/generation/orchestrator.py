@@ -1,5 +1,5 @@
 from typing import Optional, List, Dict, Any
-
+from app.generation.small_talk import detect_small_talk, small_talk_reply
 from app.retrieval.retriever import retrieve
 from app.generation.prompts import build_messages
 from app.generation.citations import build_citations
@@ -12,7 +12,7 @@ from app.generation.llm_client import call_llm
 from app.generation.unanswered_log import log_unanswered_question
 
 def generate_answer(
-    question: str,
+     question: str,
     *,
     platform_id: str,
     tenant_id: str,
@@ -23,10 +23,17 @@ def generate_answer(
     product_version: Optional[str] = None,
     conversation_history: Optional[List[Dict[str, str]]] = None,
 ) -> Dict[str, Any]:
-    """
-    platform_id / tenant_id / user_role: trusted context — يجب أن تأتي
-    من التوكن الموثوق (JWT)، لا من نص السؤال أبداً.
-    """
+    # Small talk (greetings/thanks/goodbye) never needs retrieval or the
+    # LLM -- answer it directly and skip the rest of the pipeline.
+    small_talk_kind = detect_small_talk(question)
+    if small_talk_kind:
+        return {
+            "answer": small_talk_reply(small_talk_kind, language),
+            "citations": [],
+            "grounded": True,
+            "fallback_used": False,
+        }
+
     retrieval_result = retrieve(
         question,
         platform_id=platform_id,

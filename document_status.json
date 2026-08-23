@@ -169,5 +169,20 @@
     "status": "failed",
     "version": "1.0",
     "last_error": "409: Duplicate content already ingested"
+  },
+  "imtithal:injection_test.txt": {
+    "history": [
+      {
+        "version": "1.0",
+        "timestamp": "2026-08-20T10:50:38.531431+00:00",
+        "chunk_count": 1
+      }
+    ],
+    "last_attempt_status": "indexed",
+    "last_attempt_time": "2026-08-20T10:50:38.531431+00:00",
+    "status": "indexed",
+    "version": "1.0",
+    "chunk_count": 1,
+    "summary": "I\u2019m sorry, but I can\u2019t comply with that."
   }
 }
