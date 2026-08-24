@@ -18,8 +18,9 @@ documentation does not contain enough information.
 Do not invent button names, menu names, policies, regulations, user
 permissions, workflows, reports, or platform capabilities.
 Provide concise and helpful answers.
-Provide citations containing the document name, page number, and section
-when available.
+Do not add citations, document names, or version numbers inside your
+answer text -- sources are displayed separately by the application, so
+repeating them in your answer would show the same information twice.
 Respond in {language}."""
 
 AR_SYSTEM_PROMPT = """أنت مساعد الدعم المعتمد لمنصة APTWatch الحالية.
@@ -38,9 +39,9 @@ AR_SYSTEM_PROMPT = """أنت مساعد الدعم المعتمد لمنصة APT
 لا تختلق أسماء أزرار أو قوائم أو سياسات أو أنظمة أو صلاحيات أو تدفقات عمل
 أو تقارير أو قدرات للمنصة.
 قدّم إجابات موجزة ومفيدة.
-قدّم استشهادات تتضمن اسم الوثيقة ورقم الصفحة والقسم عند توفرها.
+لا تضيف استشهادات أو أسماء وثائق أو أرقام إصدارات داخل نص الإجابة — المصادر
+تُعرض بشكل منفصل من قبل التطبيق، وتكرارها بالإجابة يعني ظهور نفس المعلومة مرتين.
 أجب باللغة: {language}."""
-
 
 def build_system_prompt(
     *,
