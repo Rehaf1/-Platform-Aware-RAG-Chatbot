@@ -22,8 +22,11 @@ def load_document_text(filepath: str) -> str:
         return docx2txt.process(filepath)
 
     elif ext in (".txt", ".md"):
-        with open(filepath, "r", encoding="utf-8") as f:
-            return f.read()
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                return f.read()
+        except UnicodeDecodeError:
+            raise ValueError(f"File is not valid UTF-8 text: {filepath}")
 
     else:
         raise ValueError(f"Unsupported file type: {ext}")

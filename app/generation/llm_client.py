@@ -2,7 +2,7 @@ import os
 from typing import List, Dict
 
 LLM_PROVIDER = os.environ.get("LLM_PROVIDER", "groq")
-LLM_MODEL = os.environ.get("LLM_MODEL", "llama-3.3-70b-versatile")
+LLM_MODEL = os.environ.get("LLM_MODEL", "openai/gpt-oss-120b")
 LLM_MAX_TOKENS = int(os.environ.get("LLM_MAX_TOKENS", "1024"))
 
 def call_llm(messages: List[Dict[str, str]]) -> str:

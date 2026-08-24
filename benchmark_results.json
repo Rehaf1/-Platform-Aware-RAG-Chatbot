@@ -1,12 +1,12 @@
 {
   "summary": {
-    "total_questions": 70,
-    "successful_runs": 70,
-    "failed_runs": 0,
-    "recall_at_k": 0.871,
-    "mrr": 0.73,
-    "generation_accuracy": 0.7,
-    "fallback_rate": 0.114
+    "total_questions": 200,
+    "successful_runs": 129,
+    "failed_runs": 71,
+    "recall_at_k": 0.876,
+    "mrr": 0.762,
+    "generation_accuracy": 0.628,
+    "fallback_rate": 0.147
   },
   "per_question": [
     {
@@ -18,7 +18,7 @@
       "retrieval_hit_rank": null,
       "retrieval_recall_at_k": false,
       "retrieval_mrr": 0.0,
-      "generated_answer": "According to the retrieved evidence, Scott Derrickson is described as an \"American director, screenwriter and producer\" [2] and Ed Wood is described as an \"American filmmaker, actor, writer, producer, and director\" [4]. Therefore, yes, Scott Derrickson and Ed Wood were of the same nationality, which is American.",
+      "generated_answer": "According to the provided evidence, Ed Wood was an American filmmaker (document [4]: \"Edward Davis Wood Jr. (October 10, 1924 – December 10, 1978) was an American filmmaker...\"), and Scott Derrickson was also an American director, screenwriter, and producer (document [2]: \"Scott Derrickson (born July 16, 1966) is an American director, screenwriter and producer.\"). \n\nTherefore, yes, Scott Derrickson and Ed Wood were of the same nationality, American.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -32,7 +32,7 @@
       "retrieval_hit_rank": null,
       "retrieval_recall_at_k": false,
       "retrieval_mrr": 0.0,
-      "generated_answer": "The approved documentation does not contain enough information to answer the question. The text only provides information about the film \"Kiss and Tell\" and the character Corliss Archer, but it does not mention the government position held by the woman who portrayed Corliss Archer. The information provided is about British government positions and has no relation to Shirley Temple, the actress who played Corliss Archer.",
+      "generated_answer": "The approved documentation does not contain enough information to answer the question about the government position held by the woman who portrayed Corliss Archer in the film Kiss and Tell. The provided texts only mention Shirley Temple as the actress who played Corliss Archer, but do not provide any information about her holding a government position.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": false
@@ -46,7 +46,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "The approved documentation does not contain enough information to answer the question. The available context mentions the Animorphs series, which is a science fantasy series told in first person, but it does not specifically mention companion books about enslaved worlds and alien species.",
+      "generated_answer": "The approved documentation does not contain enough information to directly answer the question. The provided data mentions the Animorphs series as a science fantasy series told in first person, but it does not specify that it has companion books narrating the stories of enslaved worlds and alien species. \n\nHowever, it can be noted that the Animorphs series does involve alien species and has a significant science fantasy element, but the details about the companion books and the specific focus on enslaved worlds are not present in the provided context. \n\nTherefore, based on the available information, it is not possible to provide a definitive answer to the question.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -60,7 +60,7 @@
       "retrieval_hit_rank": 3,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 0.3333333333333333,
-      "generated_answer": "According to the provided data, the Laleli Mosque is located in the Laleli, Fatih neighborhood of Istanbul, Turkey [1, 3]. The Esma Sultan Mansion is located in the Ortaköy neighborhood of Istanbul, Turkey [1, 2]. \n\nTherefore, based on the available information, the Laleli Mosque and Esma Sultan Mansion are not located in the same neighborhood.",
+      "generated_answer": "According to the provided evidence, the Laleli Mosque is located in the Laleli neighborhood of Istanbul, Turkey (document [1] and [3]), while the Esma Sultan Mansion is located in the Ortaköy neighborhood of Istanbul, Turkey (document [1] and [2]). Therefore, no, the Laleli Mosque and Esma Sultan Mansion are not located in the same neighborhood.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -74,7 +74,7 @@
       "retrieval_hit_rank": null,
       "retrieval_recall_at_k": false,
       "retrieval_mrr": 0.0,
-      "generated_answer": "The approved documentation does not contain enough information to answer the question about the director's location. The director's name, Adriana Trigiani, is mentioned, but her location is not specified as being in New York City. The documentation only mentions that the film is set in the actual Virginia town of Big Stone Gap circa 1970s and had its world premiere at the Virginia Film Festival. (5a8e3ea95542995a26add48d.txt, vbenchmark, page not specified, section not specified)",
+      "generated_answer": "The approved documentation does not contain enough information to determine the director's location. The text only mentions the film \"Big Stone Gap\" and its director, Adriana Trigiani, but does not specify where she is based. It does mention that the film had its world premiere at the Virginia Film Festival and that some other films were set or premiered in New York City, but it does not provide information about Adriana Trigiani's location. (5a8e3ea95542995a26add48d.txt, page not specified, no relevant section)",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": false
@@ -102,7 +102,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "Eenasul Fateh, also known by his stage name Aladin, is a Bangladeshi-British cultural practitioner and former international management consultant, indicating he helped organizations improve their performance as a consultant. (Source: 5a85b2d95542997b5ce40028.txt, vbenchmark)",
+      "generated_answer": "According to the retrieved evidence, Eenasul Fateh, also known by his stage name Aladin, is a Bangladeshi-British cultural practitioner and former international management consultant, which means he helped organizations improve their performance as a consultant. (Document: 5a85b2d95542997b5ce40028.txt, vbenchmark)",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -130,7 +130,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "According to the retrieved evidence, Annie Morton was born on October 8, 1970, and Terry Richardson was born on August 14, 1965. Therefore, Terry Richardson is older than Annie Morton.",
+      "generated_answer": "According to the retrieved evidence, Annie Morton was born on October 8, 1970, and Terry Richardson was born on August 14, 1965. Since 1965 is before 1970, Terry Richardson is older than Annie Morton.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -144,9 +144,9 @@
       "retrieval_hit_rank": null,
       "retrieval_recall_at_k": false,
       "retrieval_mrr": 0.0,
-      "generated_answer": "The provided information only mentions Local H as being from the United States, specifically formed in Zion, Illinois. There is no mention of a band called \"For Against\" in the provided context. Therefore, I can only confirm that Local H is from the United States, but I do not have enough information to determine the origin of For Against.",
-      "grounded": true,
-      "fallback_used": false,
+      "generated_answer": "The approved documentation does not contain enough information to answer this question. Please rephrase, or contact support if you believe this platform should have this information.",
+      "grounded": false,
+      "fallback_used": true,
       "generation_correct": false
     },
     {
@@ -172,10 +172,10 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "The approved documentation does not contain enough information to answer this question. Please rephrase, or contact support if you believe this platform should have this information.",
-      "grounded": false,
-      "fallback_used": true,
-      "generation_correct": false
+      "generated_answer": "The approved documentation does not contain enough information to answer this question. The provided documents mention David Weissman as a screenwriter and director with credits for \"The Family Man\" (2000), \"Evolution\" (2001), and \"When in Rome\" (2010), but they do not specify a film starring Nicolas Cage and Téa Leoni that he co-wrote.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
     },
     {
       "id": "5ab3b0bf5542992ade7c6e39",
@@ -186,7 +186,7 @@
       "retrieval_hit_rank": 2,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 0.5,
-      "generated_answer": "According to the retrieved evidence, specifically [2] 5ab3b0bf5542992ade7c6e39.txt (vbenchmark), the year that Guns N' Roses performed a promo for the movie starring Arnold Schwarzenegger as a former New York Police detective was 1999. The song \"Oh My God\" was sent out to radio stations in November 1999 as a promo for the soundtrack to the film \"End of Days\".",
+      "generated_answer": "According to [2] 5ab3b0bf5542992ade7c6e39.txt (vbenchmark), the song \"Oh My God\" by Guns N' Roses was sent out to radio stations in November 1999 as a promo for the soundtrack to the film \"End of Days\", which stars Arnold Schwarzenegger as a former New York Police Department detective. Therefore, the year Guns N' Roses performed a promo for this movie is 1999.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -200,7 +200,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "The approved context provided does not contain enough information to determine if 888 7th Avenue is used for real estate in the same way as the Random House Tower. According to the retrieved evidence, the Random House Tower is a mixed-use tower used as the headquarters of book publisher Random House and a luxury apartment complex [1, 3]. In contrast, 888 7th Avenue is described as an office skyscraper with the Vornado Realty Trust corporate headquarters and Previously known as the Arlen Building [2]. While it has offices, it is not explicitly stated to be used for real estate in the same sense as the Random House Tower.",
+      "generated_answer": "Based on the provided evidence, the Random House Tower is a mixed-use tower that includes a luxury apartment complex, in addition to being the headquarters of book publisher Random House. Therefore, it is used for real estate. \n\n888 7th Avenue, on the other hand, is an office skyscraper that serves as the corporate headquarters of Vornado Realty Trust and is also home to Pershing Square Capital Management and the Red Eye Grill. While it is an office building and not primarily residential, it is still a real estate property.\n\nSo, the answer is yes, both Random House Tower and 888 7th Avenue are used for real estate, although in different ways.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -214,7 +214,7 @@
       "retrieval_hit_rank": 5,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 0.2,
-      "generated_answer": "The football manager who recruited David Beckham is likely referring to Sir Alex Ferguson, as he is mentioned alongside David Beckham in the context of Manchester United. According to the retrieved evidence [4] and [5], Sir Alex Ferguson managed Manchester United from 1986 to 2013.",
+      "generated_answer": "According to the evidence [4] 5ab6d09255429954757d337d.txt (vbenchmark), the football manager who recruited David Beckham is not explicitly stated, but it can be inferred that it was Sir Alex Ferguson, as he is mentioned as the manager who drafted in young players like David Beckham. \n\nSir Alex Ferguson managed Manchester United from 1986 to 2013, as stated in evidence [5] 5ab6d09255429954757d337d.txt (vbenchmark).",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -228,7 +228,7 @@
       "retrieval_hit_rank": 3,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 0.3333333333333333,
-      "generated_answer": "The approved context does not contain enough information to answer the question about the country's population. The provided documents only mention the population of Brown County, which was 9,984 as of the 2010 census. However, the population of the country (United States) is not specified in the provided context.",
+      "generated_answer": "The approved context does not contain enough information to answer the question about the country's population. The retrieved evidence only provides information about Brown County, Kansas, and its population (9,984 as of the 2010 census), but not the country's population.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -242,7 +242,7 @@
       "retrieval_hit_rank": null,
       "retrieval_recall_at_k": false,
       "retrieval_mrr": 0.0,
-      "generated_answer": "The approved documentation does not contain enough information to answer the question. The provided text only mentions that the Vermont Catamounts men's soccer team competes in the America East Conference, but it does not provide information about the conference's former name.",
+      "generated_answer": "The approved documentation does not contain enough information to answer the question. The provided evidence does not mention the conference name or its former name from 1988 to 1996. It only mentions that the Vermont Catamounts men's soccer team competes in the America East Conference.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": false
@@ -256,7 +256,7 @@
       "retrieval_hit_rank": null,
       "retrieval_recall_at_k": false,
       "retrieval_mrr": 0.0,
-      "generated_answer": "Yes, according to the retrieved evidence, both Giuseppe Verdi and Ambroise Thomas are opera composers. \n\nGiuseppe Verdi is mentioned in [1], [3], and [4] as an Italian opera composer. \nAmbroise Thomas is mentioned in [3] as a French composer, best known for his operas \"Mignon\" and \"Hamlet\". \n\nAdditionally, [2] and [5] provide a guide to opera composers, but they do not specifically mention Ambroise Thomas or Giuseppe Verdi in these sections. However, based on the information provided in [1], [3], and [4], it can be confirmed that both are indeed opera composers.",
+      "generated_answer": "According to the retrieved evidence, yes, both Giuseppe Verdi and Ambroise Thomas are opera composers. \n\nIn [1] 5ab29c24554299449642c932.txt, it is mentioned that Giuseppe Verdi is a composer. \nIn [3] 5ab29c24554299449642c932.txt, it is stated that Charles Louis Ambroise Thomas was a French composer, best known for his operas. \nAdditionally, in [4] 5ab29c24554299449642c932.txt, Giuseppe Verdi is described as an Italian opera composer. \n\nTherefore, based on the provided evidence, it can be confirmed that both Giuseppe Verdi and Ambroise Thomas are indeed opera composers.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -270,7 +270,7 @@
       "retrieval_hit_rank": 2,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 0.5,
-      "generated_answer": "According to [1] 5ae0d4c9554299603e418468.txt (vbenchmark), Roger O. Egeberg was Assistant Secretary for Health and Scientific Affairs in the Department of Health, Education, and Welfare during the Nixon administration. \n\nRichard Nixon served as the 37th President of the United States from 1969 until 1974, as stated in [2] 5ae0d4c9554299603e418468.txt (vbenchmark). Therefore, Roger O. Egeberg was Assistant Secretary for Health and Scientific Affairs during the years 1969-1974.",
+      "generated_answer": "According to the retrieved evidence, specifically [1] 5ae0d4c9554299603e418468.txt (vbenchmark) and [4] 5ae0d4c9554299603e418468.txt (vbenchmark), Roger O. Egeberg was Assistant Secretary for Health and Scientific Affairs during the Nixon administration. Richard Nixon was the 37th President of the United States from 1969 until 1974. Therefore, Roger O. Egeberg was Assistant Secretary for Health and Scientific Affairs during the years 1969-1974.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -284,7 +284,7 @@
       "retrieval_hit_rank": 4,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 0.25,
-      "generated_answer": "Neither. According to the evidence, Henry Roth was an American novelist, and Robert Erskine Childers was English-born, but also an Irish nationalist. Therefore, the answer is Robert Erskine Childers was the English-born writer.",
+      "generated_answer": "Neither, according to the retrieved evidence. Henry Roth was an American novelist and short story writer (Document [1] and [3]), and Robert Erskine Childers was English-born but is also described as an Irish nationalist (Document [4]).",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": false
@@ -298,7 +298,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "According to the retrieved evidence, specifically [1] 5ae7a8175542993210983ed8.txt (vbenchmark), the answer is: Sergio Pérez is the only other Mexican to finish on the podium, besides Pedro Rodríguez who is the most successful Mexican driver. However, another Mexican driver mentioned is Eduardo Troconis, but there is no information that he has finished on the podium in a Formula One race. Therefore, the other Mexican Formula One driver who has held the podium besides Sergio Pérez is Pedro Rodríguez.",
+      "generated_answer": "According to the provided evidence (document 5ae7a8175542993210983ed8.txt, vbenchmark), the other Mexican Formula One driver to have finished on the podium besides Sergio Pérez (born in 1990) is Pedro Rodríguez, who is also the most successful Mexican driver and the only one to have won a grand prix.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -312,7 +312,7 @@
       "retrieval_hit_rank": 2,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 0.5,
-      "generated_answer": "The approved context does not contain information about a singer of \"A Rather Blustery Day\" voicing a hedgehog. However, it does mention that someone voiced Miles \"Tails\" Prower in the video game series \"Sonic the Hedgehog\" (document 5ae6050f55429929b0807a5e.txt, vbenchmark, [2]), but it does not specify that this person sang \"A Rather Blustery Day\". \n\nThe song \"A Rather Blustery Day\" is not explicitly mentioned, but there is a mention of \"Winnie the Pooh and the Blustery Day\" (document 5ae6050f55429929b0807a5e.txt, vbenchmark, [1]). \n\nWithout more information, it's impossible to determine the answer from the provided context. The approved documentation does not contain enough information to answer this question.",
+      "generated_answer": "The approved context provided does not mention the singer of \"A Rather Blustery Day\" or their connection to a hedgehog. However, document [2] mentions that she voiced Miles \"Tails\" Prower in the video game series \"Sonic the Hedgehog\", but it does not specify that she sang \"A Rather Blustery Day\". The song mentioned in the context is \"The Rain Rain Rain Came Down Down Down\" from \"Winnie the Pooh and the Blustery Day\". The approved documentation does not contain enough information to provide a direct answer to the question.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -326,7 +326,7 @@
       "retrieval_hit_rank": null,
       "retrieval_recall_at_k": false,
       "retrieval_mrr": 0.0,
-      "generated_answer": "The approved documentation does not contain enough information to specify another device that can control the Front Row media program aside from the Apple Remote.",
+      "generated_answer": "The approved documentation does not contain enough information to determine what other device, aside from the Apple Remote, can control the Front Row media program that the Apple Remote was originally designed to interact with.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": false
@@ -340,7 +340,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "Based on the provided data, Badly Drawn Boy is a solo act (Damon Gough) who \"wrote, produced, and played several instruments\" ([2] 5ae2070a5542994d89d5b313.txt, vbenchmark). \n\nWolf Alice, on the other hand, is a four-piece band with the following instruments mentioned: vocals, guitar, guitars, vocals, bass, and drums, vocals. This means there are at least 4 instruments (guitar, bass, drums) and possibly 5 or 6 if we count the distinction between vocals and guitars/vocals, but it is played by 4 people.\n\nGiven this information, Badly Drawn Boy (1 person playing several instruments) seems to have a higher instrument to person ratio than Wolf Alice (4 people playing at least 4 instruments).",
+      "generated_answer": "Based on the provided data, Badly Drawn Boy is a solo act (Damon Gough) who \"wrote, produced, and played several instruments\" ([2] 5ae2070a5542994d89d5b313.txt, vbenchmark). \n\nWolf Alice, on the other hand, is a four-piece band with the following instruments: vocals, guitar (Ellie Rowsell), guitars, vocals (Joff Oddie), bass (Theo Ellis), and drums, vocals (Joel Amey) ([1] 5ae2070a5542994d89d5b313.txt, vbenchmark). This means there are 4 people and at least 4 instruments (guitar, guitars, bass, drums) and possibly more if we count vocals as an instrument. \n\nBadly Drawn Boy has a higher instrument to person ratio since he plays \"several instruments\" by himself, whereas Wolf Alice has at least 4 instruments played by 4 people. Therefore, Badly Drawn Boy has a higher instrument to person ratio.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -354,7 +354,7 @@
       "retrieval_hit_rank": 2,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 0.5,
-      "generated_answer": "The father of Kasper Schmeichel, Peter Schmeichel, was voted the IFFHS World's Best Goalkeeper in 1992. (Document [2] and [4] do not specifically mention the year that the father of Kasper Peter Schmeichel was voted for the award, but document [2] mentions the year that Peter Bolesław Schmeichel MBE was voted the IFFHS World's Best Goalkeeper as 1992 and 1993, and document [4] mentions the years that Manuel Neuer was voted the worlds best goalkeeper, and other years the award has been given, and does mention Peter Schmeichel being a past award recipient, but doesn't mention the year for him)",
+      "generated_answer": "According to document [2] 5ae22b8d554299234fd0440f.txt (vbenchmark), Peter Bolesław Schmeichel, the father of Kasper Schmeichel, was voted the IFFHS World's Best Goalkeeper in 1992.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -368,10 +368,10 @@
       "retrieval_hit_rank": 4,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 0.25,
-      "generated_answer": "The writer of \"These Boots Are Made for Walkin'\" was Lee Hazlewood, and he died in 2007. (Document [2] 5a722b8655429971e9dc9329.txt, vbenchmark, and Document [4] 5a722b8655429971e9dc9329.txt, vbenchmark)",
+      "generated_answer": "According to the retrieved evidence, the writer of \"These Boots Are Made for Walkin'\" was Lee Hazlewood (document [2] and [3], 5a722b8655429971e9dc9329.txt). Additionally, it is mentioned in document [4] that Barton Lee Hazlewood died on August 4, 2007.",
       "grounded": true,
       "fallback_used": false,
-      "generation_correct": false
+      "generation_correct": true
     },
     {
       "id": "5adf37a95542995ec70e8f97",
@@ -382,7 +382,7 @@
       "retrieval_hit_rank": null,
       "retrieval_recall_at_k": false,
       "retrieval_mrr": 0.0,
-      "generated_answer": "The approved context provided does not contain enough information to answer the question about the founding year of Virginia Commonwealth University. The retrieved evidence only provides information about the VCU Rams men's basketball teams for various seasons, but does not mention the founding year of the university.",
+      "generated_answer": "The approved documentation does not contain enough information to answer the question about the founding year of Virginia Commonwealth University. The retrieved evidence only provides information about the VCU Rams men's basketball team and their performance in various seasons, but does not mention the founding year of the university.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": false
@@ -396,7 +396,7 @@
       "retrieval_hit_rank": null,
       "retrieval_recall_at_k": false,
       "retrieval_mrr": 0.0,
-      "generated_answer": "Yes, both Dictyosperma and Huernia are described as a genus. According to the retrieved evidence, Dictyosperma is a \"monotypic genus of flowering plant\" (Document [3]) and Huernia is described as \"the genus Huernia (family Apocynaceae, subfamily Asclepiadoideae)\" (Documents [1] and [2]).",
+      "generated_answer": "Yes, both Dictyosperma and Huernia are described as a genus. According to the retrieved evidence, Dictyosperma is a \"monotypic genus of flowering plant\" (document [3]) and Huernia is described as a \"genus\" in documents [1] and [2].",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -410,7 +410,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "According to [4] 5a828c8355429966c78a6a50.txt (vbenchmark), yes, Kaiser Ventures (formerly Kaiser Steel) corporation was founded by Henry J. Kaiser, who became known as the father of modern American shipbuilding. This is also confirmed in [3] 5a828c8355429966c78a6a50.txt (vbenchmark) and [5] 5a828c8355429966c78a6a50.txt (vbenchmark).",
+      "generated_answer": "Yes, Kaiser Ventures corporation was founded by Henry J. Kaiser, who became known as the father of modern American shipbuilding. (5a828c8355429966c78a6a50.txt, vbenchmark)",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -424,7 +424,287 @@
       "retrieval_hit_rank": 4,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 0.25,
-      "generated_answer": "The name of the adventure for \"Tunnels and Trolls\" is Arena of Khazan, as mentioned in document [4] 5a8a3e745542996c9b8d5e70.txt (vbenchmark).",
+      "generated_answer": "One of the adventures for \"Tunnels and Trolls\" is called \"Arena of Khazan\", as stated in document [4] 5a8a3e745542996c9b8d5e70.txt (vbenchmark).",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "5ac23ff0554299636651994d",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "When was Poison's album \"Shut Up, Make Love\" released?",
+      "gold_answer": "2000",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "The approved documentation does not contain enough information to answer the question. The provided documents mention the song \"Shut Up, Make Love\" by Poison, but they do not mention an album with that title. The song is mentioned as part of the album \"Crack a Smile...and More!\", which was released on March 14, 2000.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "5ae4a3265542995ad6573de5",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "Hayden is a singer-songwriter from Canada, but where does Buck-Tick hail from?",
+      "gold_answer": "Fujioka, Gunma",
+      "retrieval_hit_rank": 3,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 0.3333333333333333,
+      "generated_answer": "According to the retrieved evidence, Buck-Tick is a Japanese rock band, formed in Fujioka, Gunma in 1983. [3] 5ae4a3265542995ad6573de5.txt (vbenchmark)",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "5ae0361155429925eb1afc2c",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "Which  French ace pilot and adventurer fly L'Oiseau Blanc",
+      "gold_answer": "Charles Eugène",
+      "retrieval_hit_rank": null,
+      "retrieval_recall_at_k": false,
+      "retrieval_mrr": 0.0,
+      "generated_answer": "The French ace pilot and adventurer who flew L'Oiseau Blanc were Charles Nungesser and his navigator François Coli. (Source: [1] 5ae0361155429925eb1afc2c.txt, [2] 5ae0361155429925eb1afc2c.txt)",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "5abc0a5d5542993f40c73c64",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "Are Freakonomics and In the Realm of the Hackers both American documentaries?",
+      "gold_answer": "no",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "No, based on the provided data, Freakonomics Radio is an American public radio program, but it is not stated to be a documentary about hackers. In the Realm of the Hackers, on the other hand, is stated to be a 2003 Australian documentary, not American.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "5a7cc50e554299452d57ba3e",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "Which band, Letters to Cleo or Screaming Trees, had more members?",
+      "gold_answer": "Letters to Cleo",
+      "retrieval_hit_rank": 3,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 0.3333333333333333,
+      "generated_answer": "According to the retrieved evidence, Letters to Cleo had 6 members: Kay Hanley, Greg McKenna, Michael Eisenstein, Stacy Jones, Scott Riebling, and Tom Polce. \n\nScreaming Trees had at least 5 members mentioned: Mark Lanegan, Gary Lee Conner, Van Conner, Mark Pickerel, and Barrett Martin. \n\nSince 6 is more than 5, Letters to Cleo had more members.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "5abf63f15542997ec76fd3ea",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "Alexander Kerensky was defeated and destroyed by the Bolsheviks in the course of a civil war that ended when ?",
+      "gold_answer": "October 1922",
+      "retrieval_hit_rank": 3,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 0.3333333333333333,
+      "generated_answer": "According to the retrieved evidence, specifically [3] 5abf63f15542997ec76fd3ea.txt (vbenchmark), the Russian Civil War ended in October 1922. Therefore, Alexander Kerensky was defeated and destroyed by the Bolsheviks in the course of the Russian Civil War that ended in October 1922.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "5a8ef2a75542995a26add583",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "Seven Brief Lessons on Physics was written by an Italian physicist that has worked in France since what year?",
+      "gold_answer": "2000",
+      "retrieval_hit_rank": null,
+      "retrieval_recall_at_k": false,
+      "retrieval_mrr": 0.0,
+      "generated_answer": "The approved context does not contain enough information to answer the question about the year the Italian physicist started working in France. The provided documents mention the book \"Seven Brief Lessons on Physics\" and its author, Carlo Rovelli, but they do not include information about his work in France.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "5a80721b554299485f5985ef",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "The Livesey Hal War Memorial commemorates the fallen of which war, that had over 60 million casualties?",
+      "gold_answer": "World War II",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "The approved documentation does not contain information that the Livesey Hall War Memorial commemorates the fallen of a war with over 60 million casualties. However, according to document [5] 5a80721b554299485f5985ef.txt (vbenchmark), World War II had estimated total deaths ranging from 50 million to over 80 million. \n\nThe Livesey Hall War Memorial, as stated in documents [1] and [3] 5a80721b554299485f5985ef.txt (vbenchmark), commemorates the fallen of World War I and World War II. Since World War II had more than 60 million casualties (when considering the broader estimate range provided), it can be inferred that the Livesey Hall War Memorial commemorates the fallen of World War II, which aligns with the specified casualty count.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "5ab51dae5542991779162d82",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "Are both Elko Regional Airport and Gerald R. Ford International Airport located in Michigan?",
+      "gold_answer": "no",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "No, they are not. According to the provided data (Document 5ab51dae5542991779162d82.txt, vbenchmark), Elko Regional Airport is located in Elko County, Nevada, while Gerald R. Ford International Airport is located in Cascade Township, approximately 13 miles southeast of Grand Rapids, Michigan. (Document [2] 5ab51dae5542991779162d82.txt, vbenchmark)",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "5a7571135542992d0ec05f98",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "Ralph Hefferline was a psychology professor at a university that is located in what city?",
+      "gold_answer": "New York City",
+      "retrieval_hit_rank": 5,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 0.2,
+      "generated_answer": "Ralph Franklin Hefferline was a psychology professor at Columbia University, which is located in New York City.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "5a7a0e1e5542990783324e1a",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "Which dog's ancestors include Gordon and Irish Setters: the Manchester Terrier or the Scotch Collie?",
+      "gold_answer": "Scotch Collie",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "The Scotch Collie's ancestors include Gordon and Irish Setters, according to the retrieved evidence (5a7a0e1e5542990783324e1a.txt, vbenchmark).",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "5a74106b55429979e288289e",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "Where is the company that Sachin Warrier worked for as a software engineer headquartered? ",
+      "gold_answer": "Mumbai",
+      "retrieval_hit_rank": null,
+      "retrieval_recall_at_k": false,
+      "retrieval_mrr": 0.0,
+      "generated_answer": "The approved documentation does not contain enough information to determine the headquarters of the company that Sachin Warrier worked for as a software engineer. According to the evidence, Sachin Warrier worked as a software engineer in Tata Consultancy Services in Kochi, but the headquarters location of Tata Consultancy Services is not specified.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "5a79311755429970f5fffe67",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "A Japanese manga series based on a 16 year old high school student Ichitaka Seto, is written and illustrated by someone born in what year?",
+      "gold_answer": "1962",
+      "retrieval_hit_rank": null,
+      "retrieval_recall_at_k": false,
+      "retrieval_mrr": 0.0,
+      "generated_answer": "The Japanese manga series based on a 16-year-old high school student Ichitaka Seto is \"I\"s (アイズ , Aizu ). According to the retrieved evidence, \"I\"s is written and illustrated by Masakazu Katsura. However, the birth year of Masakazu Katsura is not provided in the retrieved evidence.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "5ab2d3df554299194fa9352c",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "The battle in which Giuseppe Arimondi lost his life secured what for Ethiopia?",
+      "gold_answer": "sovereignty",
+      "retrieval_hit_rank": 3,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 0.3333333333333333,
+      "generated_answer": "The battle in which Giuseppe Arimondi lost his life, the Battle of Adwa, secured Ethiopian sovereignty. (document [1] and [3])",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "5a760ab65542994ccc918697",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "Alfred Balk served as the secretary of the Committee on the Employment of Minority Groups in the News Media under which United States Vice President?",
+      "gold_answer": "Nelson Rockefeller",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "According to the retrieved evidence [1] 5a760ab65542994ccc918697.txt (vbenchmark), Alfred Balk served as the secretary of New York Governor Nelson Rockefeller's Committee on the Employment of Minority Groups in the News Media. At the time, Nelson Rockefeller was the Governor of New York, not the Vice President. He later became the Vice President of the United States.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "5a7d54165542995f4f402256",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "A medieval fortress in Dirleton, East Lothian, Scotland borders on the south side of what coastal area?",
+      "gold_answer": "Yellowcraig",
+      "retrieval_hit_rank": null,
+      "retrieval_recall_at_k": false,
+      "retrieval_mrr": 0.0,
+      "generated_answer": "The medieval fortress in Dirleton, East Lothian, Scotland, Dirleton Castle, is bordered to the north by the Firth of Forth. However, the question asks about the south side. According to the text, Dirleton Castle is to the north of the village of Dirleton and Dirleton Castle itself is mentioned, but it is not the answer to the question. \n\nThe text does mention that Dirleton Castle is bordered to the south by the village of Dirleton and Dirleton Castle, but it does not explicitly state that the village and castle border a specific coastal area on the south side. It is mentioned that the Firth of Forth is to the north. \n\nThere isn't information provided that Dirleton Castle directly borders any coastal area to its south. The information given does not provide a direct answer to the question as it seems to be about the location and geography of Dirleton Castle and surrounding areas. \n\nThe approved documentation does not contain enough information to accurately answer this specific question.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "5ab859a955429934fafe6d7b",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "Who is the writer of this song that was inspired by words on a tombstone and was the first track on the box set Back to Mono?",
+      "gold_answer": "Phil Spector",
+      "retrieval_hit_rank": 5,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 0.2,
+      "generated_answer": "The approved documentation does not contain enough information to answer the question about the writer of the song inspired by words on a tombstone. The provided documents mention the song \"To Know Him Is to Love Him\" as the first track on the box set Back to Mono, but they do not specify that it was inspired by words on a tombstone. However, according to general knowledge (not provided in the approved context), \"To Know Him Is to Love Him\" was inspired by the epitaph on the tombstone of Philip Spector's father, but this information is not found in the provided documents.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "5add61d65542995b365fab21",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "What type of forum did a former Soviet statesman initiate?",
+      "gold_answer": "Organizations could come together to address global issues",
+      "retrieval_hit_rank": 5,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 0.2,
+      "generated_answer": "A former Soviet statesman, Mikhail Gorbachev, initiated the World Summit of Nobel Peace Laureates, as a forum for Nobel Peace Laureates and Peace Laureate Organizations to address global issues and promote peace and human well-being. (Document: 5add61d65542995b365fab21.txt, vbenchmark)",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "5a8e068b5542995085b37384",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "Are Ferocactus and Silene both types of plant?",
+      "gold_answer": "yes",
+      "retrieval_hit_rank": null,
+      "retrieval_recall_at_k": false,
+      "retrieval_mrr": 0.0,
+      "generated_answer": "Yes, according to the provided information, both Ferocactus and Silene are types of plants. Ferocactus is a genus of large barrel-shaped cacti (document [1] and [5]), while Silene is a genus of flowering plants in the family Caryophyllaceae (documents [1], [2], [3], and [4]).",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "5abbf698554299114383a0b5",
+      "source": "hotpotqa_en",
+      "language": "en",
+      "question": "Which British first-generation jet-powered medium bomber was used in the South West Pacific theatre of World War II?",
+      "gold_answer": "English Electric Canberra",
+      "retrieval_hit_rank": 2,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 0.5,
+      "generated_answer": "The text does not mention a British first-generation jet-powered medium bomber being used in the South West Pacific theatre of World War II. It mentions the English Electric Canberra, but it was used in the Malayan Emergency and the Vietnam War, not in the South West Pacific theatre of World War II. However, it does mention that the squadron saw action as a bomber unit in the South West Pacific theatre of World War II, but the type of aircraft used is not specified.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -438,9 +718,9 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "فازت الأوروغواي ببطولة كأس العالم لكرو القدم مرتين. [1] arabic-2387335860751143628-1.txt (vbenchmark)",
-      "grounded": true,
-      "fallback_used": false,
+      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
+      "grounded": false,
+      "fallback_used": true,
       "generation_correct": false
     },
     {
@@ -452,10 +732,10 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "مكتشف المرو أو الكوارتز هما الفرنسيان (بيير كوري) وأخوه (جاك) اللذان كانا يدرسان عينة من الرمل في سنة 1880.",
+      "generated_answer": "المكتشفان هما الفرنسيان (بيير كوري) وأخيه (جاك) كما هو مذكور في وثيقة [1] و [2].",
       "grounded": true,
       "fallback_used": false,
-      "generation_correct": true
+      "generation_correct": false
     },
     {
       "id": "arabic-6869798435672288559-0",
@@ -480,7 +760,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "يقع مسجد السلطان عبد المجيد في مدينة جبيل اللبنانية.",
+      "generated_answer": "في مدينة جبيل اللبنانية.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -508,10 +788,10 @@
       "retrieval_hit_rank": 2,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 0.5,
-      "generated_answer": "عدد آيات سورة الكهف هو 110 آية، وفقًا للوثيقة [2] arabic--8006274635707334663-0.txt.",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
+      "grounded": false,
+      "fallback_used": true,
+      "generation_correct": false
     },
     {
       "id": "arabic-6913795185967640255-5",
@@ -522,7 +802,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "توفي ناصر السنباطي أثناء نومه، ولكن لم يتضح السبب في الوثيقة.",
+      "generated_answer": "وفقًا للمصدر [1]، توفي ناصر السنباطي أثناء نومه، ولم يُذكر سبب محدد للوفاة.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -536,7 +816,7 @@
       "retrieval_hit_rank": 2,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 0.5,
-      "generated_answer": "مخترع المحرك البخاري هو جيمس واط (1736 – 1819م).",
+      "generated_answer": "جيمس واط.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -550,7 +830,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "تمت كتابة وثيقة إعلان قيام دولة إسرائيل في 14 أيار / مايو 1948.",
+      "generated_answer": "تم كتابة وثيقة إعلان قيام دولة إسرائيل في 14 أيار / مايو 1948.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -578,7 +858,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "من الوثائق المسترجعة، لا يوجد ذكر صرحي لرئيس ألمانيا النازية.然而، يمكن الاستنتاج أن الزعيم هو أدولف هتلر.",
+      "generated_answer": "في الوثائق المسترجَعة، لم يُذكر رئيس ألمانيا النازية بشكل واضح. ومع ذلك، يمكن استنتاج أن أدولف هتلر كان الزعيم الذي حكم ألمانيا بشكل دكتاتوري خلال الفترة المذكورة (عندما كانت البلاد تعرف بألمانيا النازية)، وفقًا لاستشهاد [1].",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -592,7 +872,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "الطّيف الكهرومغناطيسي هو مصطلح عام يشمل جميع الترددات الممكنة من الإشعاعات الكهرومغناطيسية. (مصدر: arabic--8136976146685430889-0.txt)",
+      "generated_answer": "الطّيف الكهرومغناطيسي هو مصطلح عام يشمل جميع الترددات الممكنة من الإشعاعات الكهرومغناطيسية. [1] [2] [3] ويمكن تعريفه أيضًا بخطوط الأشعة الصادرة من جسم أسود عند درجة حرارة معينة. [1]",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -606,7 +886,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "تقع مدينة بينيفنتو في جنوب إيطاليا في إقليم كامبانيا.",
+      "generated_answer": "تقع مدينة بنفنتو في جنوب إيطاليا في إقليم كامبانيا.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -620,7 +900,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "المحاسبة هي تسجيل وتبويب المدخلات والعمليات التي تمثل الأحداث الاقتصادية وفق نظام معين، وتقديم المعلومات المالية المستخدمة بشكل أساسي من المدراء والمستثمرين والجهات الضريبية ومتخذي القرارات الآخرين، بهدف توزيع الموارد ضمن المؤسسات والشركات أو المنظمات أو الحكومة.",
+      "generated_answer": "المحاسبة  هي تسجيل وتبويب المدخلات والعمليات التي تمثل الأحداث الاقتصادية وفق نظام معين.[1] arabic--809784924061171860-0.txt (vbenchmark)",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -634,7 +914,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "ولد صدام حسين في قرية العوجة التابعة لمحافظة صلاح الدين. [1] [2]",
+      "generated_answer": "ولد صدام بن حسين في قرية العوجة التي تبعد 23 كم عن مدينة تكريت الواقعة شمال غرب بغداد والتابعة لمحافظة صلاح الدين.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -648,9 +928,9 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
-      "grounded": false,
-      "fallback_used": true,
+      "generated_answer": "يتراوح عدد بيوض السلمندر التي تضعها الانثى ما بين 500 إلى 600 بيضة.",
+      "grounded": true,
+      "fallback_used": false,
       "generation_correct": false
     },
     {
@@ -662,9 +942,9 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
-      "grounded": false,
-      "fallback_used": true,
+      "generated_answer": "لقد وقع الميثاق الأعظم أو الماجنا كارتا في محاولة للحد من نفوذ الملك الإنجليزي وحماية امتيازات البارونات قانونياً.",
+      "grounded": true,
+      "fallback_used": false,
       "generation_correct": false
     },
     {
@@ -676,7 +956,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "المدينة المعروفة بتضمينها لصروح صناعية مهمة، وتحديداً منتج الحديد والفولاخ على مساحة 1700 هكتار، هي عنابة.",
+      "generated_answer": "المدينة هي عنابة، التي تضم صرحا من أهم صروح الصناعة الجزائرية، وخام للحديد والفولاذ يمتد على مساحة 1700 هكتار وينتج 12 مليون طن سنويا من الحديد والفولاذ.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -690,7 +970,7 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "كاثرين صوفي فاينر.",
+      "generated_answer": "كاثرين صوفي فاينر هي أول امرأة تتقلد منصب رئيسة تحرير صحيفة الغارديان خلفًا لآلان روسبيرجير.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": true
@@ -704,290 +984,1191 @@
       "retrieval_hit_rank": 1,
       "retrieval_recall_at_k": true,
       "retrieval_mrr": 1.0,
-      "generated_answer": "علوى مصطفى, وإسماعيل طنطاوي, ونبيل البرعي هم أبرز مؤسسي أول مجموعة جهادية في مصر.",
+      "generated_answer": "بناءاً على الوثيقة [1] arabic-871761423456830602-3.txt، نشأت أول مجموعة جهادية في مصر حوالى عام 1964 بالقاهرة وكان أبرز مؤسسيها ثلاثة هم علوى مصطفى، وإسماعيل طنطاوي، ونبيل البرعي. وهم جميعاً طلبة في الثانوية العامة وقتها.",
       "grounded": true,
       "fallback_used": false,
       "generation_correct": false
+    },
+    {
+      "id": "arabic--8584123246508097505-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "في أي عام توفي إسحاق رابين؟",
+      "gold_answer": "4 نوفمبر 1995",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "توفي إسحاق رابين في عام 1995.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic-7313534755712972812-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما هي جنسية الفيلسوف ميشال فوكو؟",
+      "gold_answer": "فرنسي",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "جنسية الفيلسوف ميشال فوكو هي فرنسية.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic--1784051527186991252-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "في أي عام ولد رونالد ريغان؟",
+      "gold_answer": "فبراير 1911",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "ولد رونالد ريغان في عام 1911.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic--136399552007973646-1",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "في أي عام  تأسس نادي مانشستر يونايتد لكرة القدم؟",
+      "gold_answer": "1 مارس 1878م",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "تأسس نادي مانشستر يونايتد في عام 1878م.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic-5451938826933524961-2",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "متى أقيمت بطولة (غرب آسيا) لكرة القدم لأول مرة؟",
+      "gold_answer": "2000",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
+      "grounded": false,
+      "fallback_used": true,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic-4544770624843559444-1",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "متى تاسس الجيش اليمني؟",
+      "gold_answer": "1962",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "تأسس الجيش اليمني بشكل منفصل في كل من الشمال والجنوب، حيث تأسس الجيش النظامي للمملكة المتوكلية في 1919، والجيش الجمهوري في الجمهورية العربية اليمنية في عام 1962، والجيش الاتحادي في الجنوب في 1959.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic--4894197851010549328-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "كم يبلغ أقصى عمق لبحر قزوين؟",
+      "gold_answer": "1023 م",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "يبلغ أقصى عمق لبحر قزوين 1023 متر.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-1331982727438430185-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما هو الرجفان البطيني؟",
+      "gold_answer": "حالة توقف القلب عن العمل بسبب خلل في منظومة القلب تؤدي إلى ارتجاف البطينين بدل انقباضهما",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "الرجفان البطيني هو حالة توقف القلب عن العمل بسبب خلل في منظومة القلب تؤدي إلى ارتجاف البطينين بدل انقباضهما.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-4680614832544233619-3",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "كم عدد امارات الأمارات العربية المتحدة؟",
+      "gold_answer": "سبع",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "تتكون الإمارات العربية المتحدة من 7 إمارات. [1] arabic-4680614832544233619-3.txt (vbenchmark)",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic-2181990695859464631-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما هي عملية التركيب الضوئي؟",
+      "gold_answer": "عملية كيميائية معقدة تحدث في خلايا البكتيريا الزرقاء وفي صانعات اليخضور (الصانعات الخضراء) أو الكلوروبلاست في كل من الطحالب والنباتات العليا",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "عملية التركيب الضوئي هي عملية كيميائية معقدة تحول الطاقة الضوئية الشمسية إلى طاقة كيميائية تخزن في روابط سكر الجلوكوز.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic--5008803612859310601-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "من هو ألفرد نوبل؟",
+      "gold_answer": "مهندس ومخترع وكيميائي سويدي",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "ألفرد نوبل كان مهندسًا ومخترعًا وكيميائيًا سويديًا، وهو المخترع للديناميت (الوثيقة [1]، arabic--5008803612859310601-0.txt).",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic-8502656299944936945-8",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "أين ولد ميكيلانجيلو؟",
+      "gold_answer": "قرية كابريزي قرب أريتسو بتوسكانا",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "ولد ميكيلانجيلو في قرية كابريزي قرب أريتسو بتوسكانا.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-7846637948214632979-1",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما المعدل العادي لعملية الجماع؟",
+      "gold_answer": "5.4 دقائق",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "وفقًا للمصادر المسترجعة، يتم تحديد متوسط فترة انتظار القذف داخل المهبل لكل فئة عمرية على النحو التالي:\n- من 18 إلى 30 سنة: 6.5 دقائق\n- من 31 إلى 50 سنة: 5.4 دقائق\n- أكثر من 51 سنة: 4.3 دقائق\nومن أجل إيجاد معدل عادي لعملية الجماع بشكل عام، يمكن النظر إلى متوسط فترة انتظار القذف عبر جميع المشاركين، والذي يبلغ 5.4 دقائق.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-3625976873570121010-2",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "متى بدأ التوقيع على معاهدة الحد من انتشار الأسلحة النووية؟",
+      "gold_answer": "1 يوليو 1968",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "بدأ التوقيع على معاهدة الحد من انتشار الأسلحة النووية في 1 يوليو 1968، وفقًا للوثائق المسترجعة [1] و [2].",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-4999488021102205654-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما هو الارجاز؟",
+      "gold_answer": "نوع من العجز الجنسي، حيث يكون الشخص غير قادر على تحقيق هزة الجماع على الرغم من وجود التحفيز الكافي",
+      "retrieval_hit_rank": null,
+      "retrieval_recall_at_k": false,
+      "retrieval_mrr": 0.0,
+      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
+      "grounded": false,
+      "fallback_used": true,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic-7773098725004525923-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما هي الرهبنة الفرنسيسكانية؟",
+      "gold_answer": "رهبنة في الكنيسة الكاثوليكية، تأسست على يد القديس فرنسيس الأسيزي",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "الرهبنة الفرنسيسكانية هي رهبنة في الكنيسة الكاثوليكية، تأسست على يد القديس فرنسيس الأسيزي في شمال إيطاليا في القرن الثالث عشر. تتالف من ثلاث فروع: رهبنة رجالية، رهبنة نسائية، ورهبنة ثالثة لمدنيين يلتزمون بفروض وصلوات الرهبنة دون العيش في الدير.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic--7734924235215193725-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "من هو نقفور الثاني فوكاس؟",
+      "gold_answer": "امبراطور بيزنطي",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "نقفور الثاني فوكاس هو إمبراطور بيزنطي حكم في الفترة بين 963-969، وأسهمت حملاته العسكرية في إحياء الامبراطورية البيزنطية في القرن العاشر.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic--6743662249466666280-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "أين تقع هضبة التيبت؟",
+      "gold_answer": "آسيا الوسطى",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "تقع هضبة التبت في آسيا الوسطى. [1] arabic--6743662249466666280-0.txt",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-3378155774807116966-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "متى رسم فان كوخ لوحة ليلة النجوم؟",
+      "gold_answer": "1889 م",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "حسناً.\nرسم فينسنت فان غوخ لوحة ليلة النجوم في عام 1889 م.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic--3548885653561762649-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما مساحة جورجيا؟",
+      "gold_answer": "69.700 كم2",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "مساحة جورجيا هي 69.700 كم2.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic--2602113991125684481-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "من هو مؤلف مانجا بيرسيرك؟",
+      "gold_answer": "كينتارو ميورا",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "كينتارو ميورا",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-7985922157305006758-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "في أي سنة تأسست مدينة العيون ؟",
+      "gold_answer": "1938",
+      "retrieval_hit_rank": 2,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 0.5,
+      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
+      "grounded": false,
+      "fallback_used": true,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic--2330109395438594506-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما هو السلم الموسيقي؟",
+      "gold_answer": "عبارة عن تتابع النغمات صعوداً وهبوطاً ويتكون من سبع درجات نغمية",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "السلم الموسيقي هو عبارة عن تتابع النغمات صعوداً وهبوطاً ويتكون من سبع درجات نغمية وهي: دو - ري - مي - فا - صول - لا - سي.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-1388203046684439385-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "متى تأسست القواة الخاصة التابعة للجيش البريطاني ؟",
+      "gold_answer": "1707",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
+      "grounded": false,
+      "fallback_used": true,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic--1982623405562963931-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "من هو مؤلف رواية التائهون؟",
+      "gold_answer": "أمين معلوف",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "مؤلف رواية التائهون (Les Désorientés) هو الأديب اللبناني أمين معلوف.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-4667583935212319523-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "من هي أنغريت كرامب كارينباور؟",
+      "gold_answer": "سياسية ألمانية تشغل منصب زعيمة الاتحاد الديمقراطي المسيحي",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "هي سياسية ألمانية تشغل منصب زعيمة الاتحاد الديمقراطي المسيحي (CDU).",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic--791114612226061487-3",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ماهى نسبة الزيت في حبة البركة ؟",
+      "gold_answer": "40%",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "بذور حبة البركة تحتوي على 40% من الزيت الثابت، و 1.4% من الزيت الطيّار (arabic--791114612226061487-3.txt).",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-2145729308175106154-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "من هو مؤلف كتاب \"12 قاعدة للحياة\"؟",
+      "gold_answer": "جوردان بيرنت بيترسون",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
+      "grounded": false,
+      "fallback_used": true,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic--7312573320503767397-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "من هم اليهود الأشكناز ؟",
+      "gold_answer": "اليهود الذين ترجع أصولهم إلى أوروبا الشرقية",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "اليهود الأشكناز هم اليهود الذين ترجع أصولهم إلى أوروبا الشرقية.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic--9041088515860310506-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "متى توفي توماس كوهين ؟",
+      "gold_answer": "17 حزيران 1996",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "توفي توماس كوهن في 17 حزيران 1996.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-9027291325532355135-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "من هو كريستوفر ستيفنز؟",
+      "gold_answer": "اسمه الكامل جون كريستوفر ستيفينز ، ولد وترعرع في شمال كاليفورنيا[2] ،درس في جامعة \"بركلي\"وعمل محامياً مختصاً بالشؤون التجارية الدولية في واشنطن قبل ان ينضم إلى الخارجية الأمريكية في عام 1991.يجيد ستيفنز اللغة العربية والفرنسية وقد نشر العديد من المقالات في القدس ودمشق والقاهرة",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "كريستوفر ستيفنز (جون كريستوفر ستيفينز) هو دبلوماسي أمريكي، وكان سفير الولايات المتحدة في ليبيا منذ مايو 2012 حتى وفاته في 11 سبتمبر 2012.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic--6079310368051289337-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما هي العصور الوسطى؟",
+      "gold_answer": "التسمية التي تُطلق على الفترة الزمنية في التاريخ الأوروبي التي امتّدت من القرن الخامس حتّى القرن الخامس عشر الميلادي",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "العُصُورُ الوسطى هي الفترة الزمنية في التاريخ الأوروبي التي امتّدت من القرن الخامس حتّى القرن الخامس عشر الميلادي.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic--8056110699538714095-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما هو عظم الإسك؟",
+      "gold_answer": "الجزء الأسفل والخلفي لعظم الورك",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "يشكل عظم الإسك الجزء الأسفل والخلفي لعظم الورك. [1, arabic--8056110699538714095-0.txt]",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic--4873207681959419593-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما هو عدد آيات سورة المائدة ؟",
+      "gold_answer": "120",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "عدد آيات سورة المائدة هو 120 آية. [1] arabic--4873207681959419593-0.txt (vbenchmark)",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-1502195367826417800-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما هو العثث؟",
+      "gold_answer": "مجموعة كبيرة من الحشرات القريبة من الفراشات",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
+      "grounded": false,
+      "fallback_used": true,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic-7063737509085388264-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "أين تقع مدينة أوديسا؟",
+      "gold_answer": "جمهورية أوكرانيا",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "تقع مدينة أوديسا على ساحل البحر الأسود في جمهورية أوكرانيا.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-8431221592909566557-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "متى تم إنتاج الفلم العربي (صح النوم)؟",
+      "gold_answer": "1975",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "تم إنتاج فيلم \"صح النوم\" عام 1975.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic--5722711778735190385-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "متى تم عرض اول موسم من مسلسل امريكا قوت تالنت؟",
+      "gold_answer": "يونيو من عام 2006",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
+      "grounded": false,
+      "fallback_used": true,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic-9015174429405264576-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "من هو الملاكم الملقب ببراون بومبر؟",
+      "gold_answer": "جوزيف لويس بارو",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "جوزيف لويس بارو (المعروف باسم جو لويس) هو الملاكم الملقب بـ \"براون بومبر\" أو \"القاذفة البنّاء\"، ويعتبر واحدًا من أعظم ملاكمي الوزن الثقيل على مر العصور كما هو مذكور في [1].",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic--1238319819456031483-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "أين تقع  ولاية ساكسونيا؟",
+      "gold_answer": "ولاية ألمانية",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "تقع ولاية ساكسونيا في ألمانيا وتحدها ولايات براندنبورغ وساكسونيا أنهالت وتورينغن وبافاريا، كما تقع على الحدود مع بولندا (محافظتي سيليزيا السفلى ولوبوسكي) ومع جمهورية التشيك.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic-1447311407149580009-7",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "متى تاسست جامعة أم القرى؟",
+      "gold_answer": "1401 هـ",
+      "retrieval_hit_rank": 4,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 0.25,
+      "generated_answer": "تأسست جامعة أم القرى في عام 1401 هـ بأمر من الملك خالد بن عبد العزيز.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-4288273355663681407-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما هي دوامة نفايات شمال المحيط الهادئ؟",
+      "gold_answer": "منطقة قمامة بحرية تقع في منتصف المحيط الهادي الشمالي، وتمتد إلى منطقة غير محددة الحدود بشكل دقيق، وذلك لاختلاف تركيز البلاستيك والنفايات على حسب المنطقة",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "دوامة نفايات شمال المحيط الهادئ هي منطقة قمامة بحرية تقع في منتصف المحيط الهادي الشمالي.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic--4039680993448879502-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما هي علامة إعراب المفعول به في اللغة العربية؟",
+      "gold_answer": "الفتحة الظاهرة، أو المقدرة، أو الياء إن كان مثنى أو جمع مذكر سالم، أو الكسرة (نيابة عن الفتحة) إن كان جمع مؤنث سالم، أو الألف إن كان من الأسماء الخمسة",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "حسب الوثيقة [1]، علامة إعراب المفعول به في اللغة العربية هي الفتحة الظاهرة، أو المقدرة، أو الياء إن كان مثنى أو جمع مذكر سالم، أو الكسرة (نيابة عن الفتحة) إن كان جمع مؤنث سالم، أو الألف إن كان من الأسماء الخمسة.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic--4421763618083020741-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما هي عاصمة موزمبيق؟",
+      "gold_answer": "مابوتو",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
+      "grounded": false,
+      "fallback_used": true,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic--6429286953800094058-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "من أوراق أي نبات يستخلص الكوكايين؟",
+      "gold_answer": "الكوكا",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "يستخلص الكوكايين من أوراق نبات الكوكا.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-8832733905860776521-2",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "متى اعتزل لاعب كرة القدم دييغو فورلان اللعب دولياً؟",
+      "gold_answer": "مارس 2015",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "اعتزل دييغو فورلان اللعب دولياً في مارس 2015.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic--6253028527301065305-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "من هي الملكة هيلانة؟",
+      "gold_answer": "والدة الإمبراطور الروماني قسطنطين الكبير",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "الملكة هيلانة هي والدة الإمبراطور الروماني قسطنطين الكبير.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-3870623887809142508-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "متى توفي هتلر؟",
+      "gold_answer": "30 أبريل 1945",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "وفقًا لاستشهاد [1]، توفي أدولف هتلر في 30 أبريل 1945.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic--5024666171849999554-1",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "كم يبلغ التعداد السكاني للفلبين؟",
+      "gold_answer": "92 مليون",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "يبلغ عدد سكان الفلبين حوالي 92 مليون شخص.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic--8208184135869706849-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما هي الغواصة القزمية ؟",
+      "gold_answer": "نوع من الغواصات يكون حجم إزاحتها أقل من 150 طن",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
+      "grounded": false,
+      "fallback_used": true,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic-2064800138931327578-44",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "في أي عام كان البث العلني الأول بالألوان؟",
+      "gold_answer": "1951",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "1951: هو البث العلني الأول بالألوان، حسب الوثيقة [1].",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic--1124546496766113580-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "من هو تشارلز فرانسيس ريشتر؟",
+      "gold_answer": "عالم زلازل وفيزيائي أمريكي",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "تشارلز فرانسيس ريختر هو عالم زلازل أمريكي وفيزيائي، ومخترع مقياس ريختر الذي يستخدم لقياس قوة الزلازل.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic-590028781894714295-13",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ما هي عاصمة جورجيا؟",
+      "gold_answer": "تبليسي",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
+      "grounded": false,
+      "fallback_used": true,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic--599415483190343391-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "أين ينبع نهر ليمبوبو؟",
+      "gold_answer": "جنوب وسط أفريقيا",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
+      "grounded": false,
+      "fallback_used": true,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic--1096741898728571254-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "من كان قائد ثورة الشواف على نظام عبد الكريم قاسم في 8 آذار من عام 1959؟",
+      "gold_answer": "العقيد عبد الوهاب الشواف",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "العقيد عبد الوهاب الشواف.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-7894306573476197558-39",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "ماهى عاصمة أيرلندا الشمالية ؟",
+      "gold_answer": "بلفاست",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "بلفاست.",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-7281716423696926511-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99169, Requested 1085. Please try again in 3m39.456s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic--4613031288140884649-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "أين تقع منطقة الباحة؟",
+      "gold_answer": "الجزء الغربي من شبه الجزيرة العربية، على سلسلة جبال الحجاز",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "تقع منطقة الباحة في الجزء الغربي من شبه الجزيرة العربية، على سلسلة جبال الحجاز، حسب ما جاء في وثيقة [1] arabic--4613031288140884649-0.txt (vbenchmark).",
+      "grounded": true,
+      "fallback_used": false,
+      "generation_correct": true
+    },
+    {
+      "id": "arabic-6817791155590603033-31",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99850, Requested 785. Please try again in 9m8.64s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic-1195732479642822349-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99849, Requested 696. Please try again in 7m50.88s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic--7941728396852128970-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99848, Requested 983. Please try again in 11m57.983999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic--7462779768942605249-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99847, Requested 605. Please try again in 6m30.527999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic--6334765473867081825-39",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "في أي عام تأسست جامعة مالمو؟",
+      "gold_answer": "1998",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
+      "grounded": false,
+      "fallback_used": true,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic--7358016558451481297-4",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99846, Requested 961. Please try again in 11m37.248s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic--1011831623517135343-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99845, Requested 1355. Please try again in 17m16.8s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic-700232472767156038-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99844, Requested 620. Please try again in 6m40.896s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic-8514099779153734040-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99843, Requested 816. Please try again in 9m29.376s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic--3824286777614105787-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99842, Requested 595. Please try again in 6m17.568s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic--3043572834369890148-1",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99841, Requested 862. Please try again in 10m7.392s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic--5646607325651207016-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99840, Requested 706. Please try again in 7m51.744s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic-9009842679656490038-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99839, Requested 824. Please try again in 9m32.832s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic--3115907190746486219-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99838, Requested 803. Please try again in 9m13.824s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic-8362213291865346478-1",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99837, Requested 566. Please try again in 5m48.191999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic-4902264868157215123-1",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99836, Requested 686. Please try again in 7m31.008s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic--8541282488835603445-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99835, Requested 763. Please try again in 8m36.672s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic--1991540043570300894-0",
+      "source": "tydiqa",
+      "language": "ar",
+      "question": "من هم الأنصار؟",
+      "gold_answer": "أهل يثرب الذين ناصروا رسول الله في الإسلام محمد بن عبد الله",
+      "retrieval_hit_rank": 1,
+      "retrieval_recall_at_k": true,
+      "retrieval_mrr": 1.0,
+      "generated_answer": "لا تحتوي الوثائق المعتمدة على معلومات كافية للإجابة على هذا السؤال. يرجى إعادة صياغة السؤال، أو التواصل مع الدعم إذا كنت تعتقد أن هذه المنصة يجب أن تحتوي على هذه المعلومة.",
+      "grounded": false,
+      "fallback_used": true,
+      "generation_correct": false
+    },
+    {
+      "id": "arabic-6119593985699240173-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99834, Requested 685. Please try again in 7m28.416s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic-2832532024920469137-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99833, Requested 556. Please try again in 5m36.096s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic--5968016957126891948-2",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99832, Requested 709. Please try again in 7m47.424s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "arabic-7546778686111095307-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99831, Requested 602. Please try again in 6m14.111999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english--3215621880858840488-2",
       "source": "tydiqa",
-      "language": "en",
-      "question": "What is a way to increase your wound healing speed?",
-      "gold_answer": "Wound care",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "According to the retrieved evidence, one way to increase wound healing speed is through wound care, which includes cleaning and protection from reinjury or infection. [1] english--3215621880858840488-2.txt (vbenchmark)",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99827, Requested 462. Please try again in 4m9.696s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english-5888115353945373749-2",
       "source": "tydiqa",
-      "language": "en",
-      "question": "Who founded the Burntisland Shipbuilding Company?",
-      "gold_answer": "Amos and Wilfrid Ayre",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "Brothers Amos and Wilfrid Ayre founded the Burntisland Shipbuilding Company in 1918.",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99826, Requested 528. Please try again in 5m5.856s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english--8455955749391491801-5",
       "source": "tydiqa",
-      "language": "en",
-      "question": "What is the surface area of the human cortex?",
-      "gold_answer": "1.3 square feet",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "The surface area of each hemispheric cortex is about 1.3 square feet (0.12m2) when unfolded.",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99826, Requested 621. Please try again in 6m26.208s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english--3784698701089424208-2",
       "source": "tydiqa",
-      "language": "en",
-      "question": "How many units has Agatha Christie sold?",
-      "gold_answer": "2 billion copies",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "According to the retrieved evidence, Agatha Christie's novels have sold roughly 2 billion copies. (english--3784698701089424208-2.txt, no specific page or section available)",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99825, Requested 770. Please try again in 8m34.08s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english--4163667823969277427-3",
       "source": "tydiqa",
-      "language": "en",
-      "question": "When was Nájera established?",
-      "gold_answer": "923",
-      "retrieval_hit_rank": 2,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 0.5,
-      "generated_answer": "The approved documentation does not contain enough information to determine when Nájera was established. The provided texts only mention the year of conquests, such as 923 by Ordoño II of Leon and 1054 by Castile, but do not provide information about the founding or establishment of Nájera.",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99824, Requested 594. Please try again in 6m1.152s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english-7916249696124721578-1",
       "source": "tydiqa",
-      "language": "en",
-      "question": "When was the Republican People's Party formed in Turkey?",
-      "gold_answer": "1919",
-      "retrieval_hit_rank": 2,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 0.5,
-      "generated_answer": "The Republican People's Party (CHP) was formed on 10 November 1924, when the People's Party renamed itself.",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": false
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99823, Requested 589. Please try again in 5m55.968s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english--5162675390402100235-0",
       "source": "tydiqa",
-      "language": "en",
-      "question": "When was the Normandy Campaign?",
-      "gold_answer": "6 June 1944",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "The Normandy landings, also known as D-Day, occurred on 6 June 1944. According to the retrieved evidence, by the end of August, more than two million Allied troops were in France, indicating the campaign lasted at least until the end of August 1944. [1] english--5162675390402100235-0.txt, [2] english--5162675390402100235-0.txt.",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99822, Requested 633. Please try again in 6m33.12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english-4260304375433341273-1",
       "source": "tydiqa",
-      "language": "en",
-      "question": "What are the official languages of Switzerland?",
-      "gold_answer": "German, French, Italian and Romansh",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "According to the retrieved evidence (english-4260304375433341273-1.txt), the official languages of Switzerland at the national level are German, French, and Italian. Romansh is a national language but does not have equal status as an official language at the national level.",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": false
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99821, Requested 476. Please try again in 4m16.608s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english--7628750386915556118-0",
       "source": "tydiqa",
-      "language": "en",
-      "question": "How long does a cold usually last?",
-      "gold_answer": "seven to ten days",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "According to the retrieved evidence (english--7628750386915556118-0.txt), people usually recover from a cold in seven to ten days.",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99820, Requested 530. Please try again in 5m2.4s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english-810831785794848590-2",
       "source": "tydiqa",
-      "language": "en",
-      "question": "Who was Queen Elizabeth II's father?",
-      "gold_answer": "King George VI",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "According to the retrieved evidence (english-810831785794848590-2.txt, vbenchmark), Queen Elizabeth II's father was the Duke of York, later known as King George VI.",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99819, Requested 593. Please try again in 5m55.968s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english-2483641648082790457-0",
       "source": "tydiqa",
-      "language": "en",
-      "question": "When was the Isle of Wight Railway first constructed?",
-      "gold_answer": "1864",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "The Isle of Wight Railway was first constructed in 1864, when it opened the first section of line from Ryde to Sandown. (Source: english-2483641648082790457-0.txt)",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99818, Requested 537. Please try again in 5m6.72s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english--528754620658318330-1",
       "source": "tydiqa",
-      "language": "en",
-      "question": "What is the lowest brass instrument?",
-      "gold_answer": "contrabass tuba",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "The approved documentation does not contain enough information to answer this question. Please rephrase, or contact support if you believe this platform should have this information.",
-      "grounded": false,
-      "fallback_used": true,
-      "generation_correct": false
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99817, Requested 539. Please try again in 5m7.584s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english--1510698651428021090-0",
       "source": "tydiqa",
-      "language": "en",
-      "question": "What is a beta particle?",
-      "gold_answer": "a high-energy, high-speed electron or positron emitted by the radioactive decay of an atomic nucleus during the process of beta decay",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "A beta particle, also called beta ray or beta radiation (symbol β), is a high-energy, high-speed electron or positron emitted by the radioactive decay of an atomic nucleus during the process of beta decay.",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99816, Requested 472. Please try again in 4m8.832s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english--2747805145808164936-0",
       "source": "tydiqa",
-      "language": "en",
-      "question": "What was the most powerful storm in the 1996-97 South-West Indian Ocean cyclone season?",
-      "gold_answer": "Daniella and Helinda",
-      "retrieval_hit_rank": 2,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 0.5,
-      "generated_answer": "According to the retrieved evidence, the strongest storms of the 1996-97 South-West Indian Ocean cyclone season were Daniella and Helinda, which were tied for the strongest storm of the season. (english--2747805145808164936-0.txt, [2])",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99815, Requested 706. Please try again in 7m30.144s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english--9160583227068377516-3",
       "source": "tydiqa",
-      "language": "en",
-      "question": "What is the oldest surviving stained glass window?",
-      "gold_answer": "Prophet Windows in Augsburg Cathedral",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "The oldest surviving stained glass windows still in situ are thought to be the Prophet Windows in Augsburg Cathedral, of c. 1065, as stated in document english--9160583227068377516-3.txt (vbenchmark), page not specified, section not specified.",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99814, Requested 743. Please try again in 8m1.248s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english-5752212595837972882-1",
       "source": "tydiqa",
-      "language": "en",
-      "question": "What is the purpose of the Royal Air Force?",
-      "gold_answer": "support the objectives of the British Ministry of Defence (MoD), which are to \"provide the capabilities needed: to ensure the security and defence of the United Kingdom and overseas territories, including against terrorism; to support the Government’s foreign policy objectives particularly in promoting international peace and security\"",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "The purpose of the Royal Air Force (RAF) is to support the objectives of the British Ministry of Defence (MoD), which are to ensure the security and defence of the United Kingdom and overseas territories, and to support the Government's foreign policy objectives, particularly in promoting international peace and security. \n\nThe RAF's mission statement, as described, is \"to provide an agile, adaptable and capable Air Force that makes a decisive air power contribution in support of the UK Defence Mission\". (english-5752212595837972882-1.txt, vbenchmark)",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": false
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99814, Requested 747. Please try again in 8m4.704s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english--1942915601721602479-0",
       "source": "tydiqa",
-      "language": "en",
-      "question": "What is the main religion in Australia?",
-      "gold_answer": "Christianity",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "According to the retrieved evidence, the main religion in Australia is Christianity, with 52.2% of the Australian population declaring some variety of Christianity in the 2016 Census. (Document: english--1942915601721602479-0.txt, no specific page or section available)",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99813, Requested 695. Please try again in 7m18.912s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english-6441017367551705174-0",
       "source": "tydiqa",
-      "language": "en",
-      "question": "What is the longest recorded distance that a tornado has traveled?",
-      "gold_answer": "219 miles",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "The longest recorded distance that a tornado has traveled is 219 miles (352km).",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99812, Requested 653. Please try again in 6m41.76s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english--3358237151640751403-2",
       "source": "tydiqa",
-      "language": "en",
-      "question": "Who is the current leader of South Africa?",
-      "gold_answer": "Cyril Ramaphosa",
-      "retrieval_hit_rank": 2,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 0.5,
-      "generated_answer": "The current leader of South Africa, according to the retrieved evidence, is Cyril Ramaphosa, who was elected by the National Assembly on 15 February 2018. (Document: english--3358237151640751403-2.txt)",
-      "grounded": true,
-      "fallback_used": false,
-      "generation_correct": true
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99811, Requested 567. Please try again in 5m26.592s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     },
     {
       "id": "english-8821709654178528244-60",
       "source": "tydiqa",
-      "language": "en",
-      "question": "What percentage of the American population is vegetarian?",
-      "gold_answer": "3.4%",
-      "retrieval_hit_rank": 1,
-      "retrieval_recall_at_k": true,
-      "retrieval_mrr": 1.0,
-      "generated_answer": "The approved documentation does not contain enough information to answer this question. Please rephrase, or contact support if you believe this platform should have this information.",
-      "grounded": false,
-      "fallback_used": true,
-      "generation_correct": false
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99810, Requested 495. Please try again in 4m23.52s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english--3443071400046142337-1",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99809, Requested 594. Please try again in 5m48.191999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english--5580129732952115841-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99808, Requested 740. Please try again in 7m53.472s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english--9200209251194999613-48",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99808, Requested 517. Please try again in 4m40.8s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-6732591111355057645-7",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99807, Requested 624. Please try again in 6m12.383999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english--5378748579860251503-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99806, Requested 796. Please try again in 8m40.128s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-3118035794881496621-6",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99805, Requested 490. Please try again in 4m14.88s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english--2167897353717705239-69",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99803, Requested 417. Please try again in 3m10.08s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-7850862111089713467-2",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99802, Requested 678. Please try again in 6m54.72s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-3817757329151022152-6",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99801, Requested 782. Please try again in 8m23.712s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english--6434699501474565471-1",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99800, Requested 461. Please try again in 3m45.504s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english--540626909128855590-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99799, Requested 512. Please try again in 4m28.704s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english--1652234695036950800-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99798, Requested 811. Please try again in 8m46.176s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-2351225571863452325-1",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99797, Requested 796. Please try again in 8m32.352s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-5155854046463855692-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99796, Requested 785. Please try again in 8m21.984s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-8721285374469124906-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99795, Requested 578. Please try again in 5m22.272s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-5167928761639792398-1",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99794, Requested 680. Please try again in 6m49.536s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-1503982416709332979-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99793, Requested 546. Please try again in 4m52.895999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-2019150211809301484-5",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99793, Requested 460. Please try again in 3m38.592s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english--6904755975403324445-2",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99792, Requested 605. Please try again in 5m43.008s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-4163089137008587780-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99791, Requested 470. Please try again in 3m45.504s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-4358194792614522856-21",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99790, Requested 743. Please try again in 7m40.511999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english--6147079051558956179-1",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99789, Requested 615. Please try again in 5m49.056s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english--5095448092840670197-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99788, Requested 669. Please try again in 6m34.848s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-1665515912865133701-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99787, Requested 554. Please try again in 4m54.623999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english--5604301476522225826-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99786, Requested 558. Please try again in 4m57.216s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english--6152671228003344803-8",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99785, Requested 590. Please try again in 5m24s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-2038474130177143186-27",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99784, Requested 544. Please try again in 4m43.392s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-6388452109358941861-6",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99784, Requested 661. Please try again in 6m24.48s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-7959089008868902511-2",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99783, Requested 677. Please try again in 6m37.44s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    },
+    {
+      "id": "english-3652202307744631086-0",
+      "source": "tydiqa",
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kz5r265ze5x98qfndcmxv26w` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99782, Requested 845. Please try again in 9m1.728s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
     }
   ]
 }

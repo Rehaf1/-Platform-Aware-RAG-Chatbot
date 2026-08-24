@@ -170,19 +170,20 @@
     "version": "1.0",
     "last_error": "409: Duplicate content already ingested"
   },
-  "imtithal:injection_test.txt": {
-    "history": [
-      {
-        "version": "1.0",
-        "timestamp": "2026-08-20T10:50:38.531431+00:00",
-        "chunk_count": 1
-      }
-    ],
-    "last_attempt_status": "indexed",
-    "last_attempt_time": "2026-08-20T10:50:38.531431+00:00",
-    "status": "indexed",
+  "imtithal:sql_test.txt": {
+    "history": [],
+    "last_attempt_status": "failed",
+    "last_attempt_time": "2026-08-18T06:53:12.014934+00:00",
+    "status": "failed",
     "version": "1.0",
-    "chunk_count": 1,
-    "summary": "I\u2019m sorry, but I can\u2019t comply with that."
+    "last_error": "409: Duplicate content already ingested"
+  },
+  "imtithal:garbage.txt": {
+    "history": [],
+    "last_attempt_status": "failed",
+    "last_attempt_time": "2026-08-18T06:53:12.369199+00:00",
+    "status": "failed",
+    "version": "1.0",
+    "last_error": "'utf-8' codec can't decode byte 0xff in position 1: invalid start byte"
   }
 }
