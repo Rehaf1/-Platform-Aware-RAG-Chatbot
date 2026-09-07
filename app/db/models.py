@@ -61,18 +61,18 @@ class User(Base):
     __tablename__ = "users"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    external_user_id = Column(String, nullable=False)  # the "user_id" claim from the JWT
+    external_user_id = Column(String, nullable=False)
     platform_id = Column(UUID(as_uuid=True), ForeignKey("platforms.id"), nullable=False)
     tenant_id = Column(UUID(as_uuid=True), ForeignKey("tenants.id"), nullable=False)
     role_id = Column(UUID(as_uuid=True), ForeignKey("roles.id"), nullable=True)
     email = Column(String, nullable=True)
+    password_hash = Column(String, nullable=True)
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)
 
     platform = relationship("Platform")
     tenant = relationship("Tenant")
     role = relationship("Role")
-
 
 # ---------------------------------------------------------------------------
 # Group 2: Conversations

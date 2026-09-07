@@ -7,12 +7,14 @@ from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from app.api.documents import router as documents_router
+from app.api.auth_routes import router as auth_router
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any
 
 from app.auth.jwt_auth import get_trusted_context, TrustedContext
 from app.generation.orchestrator import generate_answer
 from app.generation.query_preprocessing import preprocess_query
+from app.generation.language_detection import detect_language
 from app.api.audit_log import log_chat_request
 from app.db.database import get_db
 from app.db.crud import (
@@ -27,31 +29,33 @@ from app.db.crud import (
     get_message_for_user,
     add_feedback,
     log_audit_event,
+    list_conversations_for_user,
+    get_all_messages_for_conversation,
+    get_citations_for_message,
+    rename_conversation,
 )
 
 app = FastAPI(title="APTWatch Platform-Aware RAG Chatbot", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-    "http://localhost:5173",
-    "http://localhost:5174",
-    "http://localhost:5175",],
+    allow_origin_regex=r"http://localhost:\d+",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 app.include_router(documents_router, prefix="/api/v1")
+app.include_router(auth_router, prefix="/api/v1")
 
 
 @app.get("/health")
 def health() -> Dict[str, str]:
-    """Liveness probe — process is up."""
+    """Liveness probe -- process is up."""
     return {"status": "ok"}
 
 
 @app.get("/ready")
 def ready() -> Dict[str, str]:
-    """Readiness probe — confirms Chroma is reachable."""
+    """Readiness probe -- confirms Chroma is reachable."""
     try:
         from app.retrieval.vector_store import collection
         collection.count()
@@ -67,14 +71,16 @@ def ready() -> Dict[str, str]:
 class ChatRequest(BaseModel):
     question: str = Field(..., min_length=1, max_length=4000)
     module: Optional[str] = None
-    language: str = "en"
+    language: Optional[str] = None
+    # Optional: if omitted, auto-detected from the question text itself
+    # (Arabic question -> Arabic answer, English -> English) via
+    # detect_language() below. Still overridable by the client.
     product_version: Optional[str] = None
     conversation_id: Optional[str] = None
-    # Conversation continuity, per the agreed design: the CLIENT decides
-    # whether this is a follow-up (send the conversation_id it got back
-    # last time) or a fresh start (omit it) -- the server never guesses
-    # based on elapsed time. An unknown/foreign ID is treated the same as
-    # omitting it: a new conversation starts rather than erroring out.
+    # Conversation continuity: the CLIENT decides whether this is a
+    # follow-up (send the conversation_id it got back last time) or a
+    # fresh start (omit it) -- the server never guesses based on elapsed
+    # time. An unknown/foreign ID is treated the same as omitting it.
 
 
 class ChatResponse(BaseModel):
@@ -83,13 +89,9 @@ class ChatResponse(BaseModel):
     grounded: bool
     fallback_used: bool
     conversation_id: str
-    # Always returned -- the client stores this and sends it back on the
-    # next message in the same conversation.
     message_id: Optional[str] = None
     # The assistant message's DB row id, so the client can attach
-    # feedback (POST /api/v1/feedback) to this exact answer. None if
-    # persistence failed (see the try/except below) -- the client should
-    # hide the feedback buttons for that message in that rare case.
+    # feedback to this exact answer. None if persistence failed.
 
 
 @app.post("/api/v1/chat", response_model=ChatResponse)
@@ -105,6 +107,12 @@ def chat(
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc))
 
+    # Auto-detect the answer language from the question itself unless the
+    # client explicitly overrode it. This is what guarantees small-talk
+    # and real questions alike come back in the same language they were
+    # asked in.
+    effective_language = request.language or detect_language(clean_question)
+
     # --- resolve identity + conversation (best-effort; see try/except below) ---
     conversation = None
     user_row = None
@@ -119,9 +127,6 @@ def chat(
             conversation = get_conversation_for_user(db, request.conversation_id, user_row)
 
         if conversation is not None:
-            # continuing an existing conversation -- pull recent turns as
-            # context for the LLM, in the {"role", "content"} shape
-            # prompts.build_messages() already expects
             prior_messages = get_recent_messages(db, conversation, limit=10)
             history_for_prompt = [
                 {"role": m.role, "content": m.content} for m in prior_messages
@@ -139,14 +144,13 @@ def chat(
         tenant_id=ctx.tenant_id,
         module=request.module,
         user_role=ctx.user_role,
-        language=request.language,
+        language=effective_language,
         product_version=request.product_version,
         conversation_history=history_for_prompt,
     )
 
     latency_ms = (time.perf_counter() - start) * 1000
 
-    # --- persist to PostgreSQL (best-effort, see module docstring above) ---
     assistant_message_id = None
     try:
         if conversation is not None:
@@ -216,28 +220,130 @@ def feedback(
     ctx: TrustedContext = Depends(get_trusted_context),
     db: Session = Depends(get_db),
 ) -> FeedbackResponse:
-    """
-    Attaches a thumbs up/down (+ optional comment) to a previously
-    returned assistant message. Scoped to the requesting user via
-    get_message_for_user -- a user can only rate messages from their own
-    conversations.
-    """
     platform_row = get_or_create_platform(db, ctx.platform_id)
     tenant_row = get_or_create_tenant(db, platform_row, ctx.tenant_id)
     user_row = get_or_create_user(db, platform_row, tenant_row, ctx.user_id, ctx.user_role)
 
     message = get_message_for_user(db, request.message_id, user_row)
     if message is None:
-        raise HTTPException(
-            status_code=404,
-            detail="Message not found, or does not belong to this user.",
+        raise HTTPException(status_code=404, detail="Message not found, or does not belong to this user.")
+
+    add_feedback(db, message, user_row, is_helpful=request.is_helpful, comment=request.comment)
+    return FeedbackResponse(status="ok")
+
+
+# ---------------------------------------------------------------------------
+# /api/v1/conversations -- conversation history
+# ---------------------------------------------------------------------------
+
+class ConversationSummary(BaseModel):
+    id: str
+    title: Optional[str]
+    created_at: str
+
+
+class ConversationListResponse(BaseModel):
+    conversations: List[ConversationSummary]
+
+
+@app.get("/api/v1/conversations", response_model=ConversationListResponse)
+def list_conversations(
+    ctx: TrustedContext = Depends(get_trusted_context),
+    db: Session = Depends(get_db),
+) -> ConversationListResponse:
+    """User's own conversation history, newest first."""
+    platform_row = get_or_create_platform(db, ctx.platform_id)
+    tenant_row = get_or_create_tenant(db, platform_row, ctx.tenant_id)
+    user_row = get_or_create_user(db, platform_row, tenant_row, ctx.user_id, ctx.user_role)
+
+    conversations = list_conversations_for_user(db, user_row)
+    return ConversationListResponse(
+        conversations=[
+            ConversationSummary(id=str(c.id), title=c.title, created_at=c.created_at.isoformat())
+            for c in conversations
+        ]
+    )
+
+
+class HistoryMessage(BaseModel):
+    role: str
+    content: str
+    grounded: Optional[bool] = None
+    fallback_used: Optional[bool] = None
+    citations: List[Dict[str, Any]] = []
+
+
+class ConversationDetailResponse(BaseModel):
+    conversation_id: str
+    messages: List[HistoryMessage]
+
+
+@app.get("/api/v1/conversations/{conversation_id}", response_model=ConversationDetailResponse)
+def get_conversation_detail(
+    conversation_id: str,
+    ctx: TrustedContext = Depends(get_trusted_context),
+    db: Session = Depends(get_db),
+) -> ConversationDetailResponse:
+    platform_row = get_or_create_platform(db, ctx.platform_id)
+    tenant_row = get_or_create_tenant(db, platform_row, ctx.tenant_id)
+    user_row = get_or_create_user(db, platform_row, tenant_row, ctx.user_id, ctx.user_role)
+
+    messages = get_all_messages_for_conversation(db, conversation_id, user_row)
+    if messages is None:
+        raise HTTPException(status_code=404, detail="Conversation not found.")
+
+    history: List[HistoryMessage] = []
+    for m in messages:
+        citations = []
+        if m.role == "assistant":
+            citations = [
+                {
+                    "document_name": c.document_name,
+                    "document_version": c.document_version,
+                    "section": c.section,
+                    "page": c.page,
+                    "excerpt": c.excerpt,
+                }
+                for c in get_citations_for_message(db, m)
+            ]
+        history.append(
+            HistoryMessage(
+                role=m.role, content=m.content, grounded=m.grounded,
+                fallback_used=m.fallback_used, citations=citations,
+            )
         )
 
-    add_feedback(
-        db,
-        message,
-        user_row,
-        is_helpful=request.is_helpful,
-        comment=request.comment,
-    )
-    return FeedbackResponse(status="ok")
+    return ConversationDetailResponse(conversation_id=conversation_id, messages=history)
+
+
+class RenameConversationRequest(BaseModel):
+    title: str = Field(..., min_length=1, max_length=200)
+
+
+class RenameConversationResponse(BaseModel):
+    id: str
+    title: str
+
+
+@app.patch("/api/v1/conversations/{conversation_id}", response_model=RenameConversationResponse)
+def rename_conversation_endpoint(
+    conversation_id: str,
+    request: RenameConversationRequest,
+    ctx: TrustedContext = Depends(get_trusted_context),
+    db: Session = Depends(get_db),
+) -> RenameConversationResponse:
+    """
+    Lets the user give a conversation a custom title, replacing the
+    auto-generated one (first question, truncated). Scoped to the
+    requesting user via rename_conversation -- 404s rather than leaking
+    whether a foreign conversation ID exists.
+    """
+    platform_row = get_or_create_platform(db, ctx.platform_id)
+    tenant_row = get_or_create_tenant(db, platform_row, ctx.tenant_id)
+    user_row = get_or_create_user(db, platform_row, tenant_row, ctx.user_id, ctx.user_role)
+
+    conversation = rename_conversation(db, conversation_id, user_row, request.title)
+    if conversation is None:
+        raise HTTPException(status_code=404, detail="Conversation not found.")
+
+    return RenameConversationResponse(id=str(conversation.id), title=conversation.title)

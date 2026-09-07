@@ -4,6 +4,7 @@ import UploadPanel from "./components/UploadPanel"
 import DocumentTable from "./components/DocumentTable"
 import UnansweredQuestions from "./components/UnansweredQuestions"
 import FrequentlyAsked from "./components/FrequentlyAsked"
+import CreateAccountPanel from "./components/CreateAccountPanel"
 import { useLanguage } from "./context/LanguageContext"
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
 
         {active === "unanswered" && <UnansweredQuestions />}
         {active === "faq" && <FrequentlyAsked />}
+        {active === "accounts" && <CreateAccountPanel />}
       </main>
     </div>
   )

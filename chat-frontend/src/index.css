@@ -1,5 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
+
+/* Tailwind v4 defaults dark: to the OS's prefers-color-scheme. This
+   project toggles dark mode manually via a class on <html> (see
+   ThemeContext.jsx), so dark: needs to be re-scoped to that class
+   instead -- without this line, every dark: utility below is inert. */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-ink: #1D1730;
@@ -19,6 +25,7 @@
   --font-display: 'Source Serif 4', serif;
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
+  --font-arabic: 'IBM Plex Sans Arabic', 'Inter', sans-serif;
 }
 
 body {
@@ -27,6 +34,17 @@ body {
   font-family: var(--font-sans);
 }
 
+.dark body,
+html.dark {
+  background: #16101f;
+  color: #EFEAFB;
+}
+
 * {
   -webkit-font-smoothing: antialiased;
+}
+
+.font-arabic {
+  font-family: var(--font-arabic);
+  line-height: 1.9;
 }

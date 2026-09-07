@@ -2,8 +2,11 @@ import { User, Bot, ShieldAlert } from "lucide-react"
 import FeedbackButtons from "./FeedbackButtons"
 import CitationList from "./CitationList"
 
+const ARABIC_PATTERN = /[\u0600-\u06FF]/
+
 export default function MessageBubble({ message }) {
   const isUser = message.role === "user"
+  const isArabic = ARABIC_PATTERN.test(message.content)
 
   return (
     <div className={`flex gap-3 ${isUser ? "flex-row-reverse" : ""}`}>
@@ -16,6 +19,7 @@ export default function MessageBubble({ message }) {
 
       <div className={`max-w-[75%] ${isUser ? "items-end" : "items-start"} flex flex-col gap-1.5`}>
         <div
+          dir={isArabic ? "rtl" : "ltr"}
           className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-wrap
             ${isUser
               ? "bg-indigo text-white rounded-tr-sm"
@@ -26,7 +30,7 @@ export default function MessageBubble({ message }) {
           {message.fallbackUsed && !isUser && (
             <div className="flex items-center gap-1.5 text-garnet text-xs font-medium mb-1.5">
               <ShieldAlert size={13} />
-              <span>No confident answer found</span>
+              <span>{isArabic ? "لم يتم العثور على إجابة دقيقة" : "No confident answer found"}</span>
             </div>
           )}
           {message.content}

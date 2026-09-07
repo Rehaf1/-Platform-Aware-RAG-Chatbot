@@ -14,6 +14,7 @@ export default function Sidebar({ active, onNavigate }) {
     { id: "documents", label: t("navDocuments") },
     { id: "unanswered", label: t("navUnanswered") },
     { id: "faq", label: t("navFaq") },
+    { id: "accounts", label: "Accounts" },
   ]
 
   function handleTokenChange(e) {

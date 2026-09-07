@@ -54,12 +54,21 @@ async function request(path, options = {}) {
 }
 
 export const api = {
-  sendMessage: ({ question, language = "en", conversationId }) =>
+  login: (email, password) =>
+    request("/auth/login", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+    }),
+
+  // language omitted by default -- the backend auto-detects it from the
+  // question text (Arabic in, Arabic out; English in, English out).
+  // Pass an explicit language only to override that.
+  sendMessage: ({ question, language, conversationId }) =>
     request("/chat", {
       method: "POST",
       body: JSON.stringify({
         question,
-        language,
+        language: language || undefined,
         conversation_id: conversationId || undefined,
       }),
     }),
@@ -73,5 +82,17 @@ export const api = {
         is_helpful: isHelpful,
         comment: comment || undefined,
       }),
+    }),
+
+  // Conversation history sidebar
+  listConversations: () => request("/conversations", { method: "GET" }),
+
+  getConversation: (conversationId) =>
+    request(`/conversations/${conversationId}`, { method: "GET" }),
+
+  renameConversation: (conversationId, title) =>
+    request(`/conversations/${conversationId}`, {
+      method: "PATCH",
+      body: JSON.stringify({ title }),
     }),
 }

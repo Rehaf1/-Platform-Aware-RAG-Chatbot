@@ -43,4 +43,11 @@ export const api = {
   uploadDocument: (formData) => request("/documents/upload", { method: "POST", body: formData }),
   unansweredQuestions: () => request("/documents/unanswered-questions", { method: "GET" }),
   frequentlyAsked: () => request("/documents/frequently-asked", { method: "GET" }),
+
+  createAccount: (payload) =>
+    request("/admin/accounts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }),
 }

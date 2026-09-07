@@ -349,3 +349,92 @@ def log_audit_event(
         )
     )
     db.commit()
+
+# ---------------------------------------------------------------------------
+# Conversation history listing -- backs GET /api/v1/conversations and
+# GET /api/v1/conversations/{id}
+# ---------------------------------------------------------------------------
+
+def list_conversations_for_user(db: Session, user: User, limit: int = 50) -> List[Conversation]:
+    return (
+        db.query(Conversation)
+        .filter(Conversation.user_id == user.id)
+        .order_by(Conversation.created_at.desc())
+        .limit(limit)
+        .all()
+    )
+
+
+def get_all_messages_for_conversation(db: Session, conversation_id: str, user: User):
+    conversation = get_conversation_for_user(db, conversation_id, user)
+    if conversation is None:
+        return None
+    return (
+        db.query(Message)
+        .filter(Message.conversation_id == conversation.id)
+        .order_by(Message.created_at.asc())
+        .all()
+    )
+
+
+def get_citations_for_message(db: Session, message: Message) -> List[Citation]:
+    return db.query(Citation).filter(Citation.message_id == message.id).all()
+
+
+def rename_conversation(
+    db: Session, conversation_id: str, user: User, new_title: str
+) -> Optional[Conversation]:
+    """
+    Renames a conversation the user owns. Returns None (not an error) if
+    the conversation doesn't exist or belongs to someone else -- same
+    trust-boundary pattern as get_conversation_for_user, so the caller
+    can 404 without leaking whether a foreign ID exists.
+    """
+    conversation = get_conversation_for_user(db, conversation_id, user)
+    if conversation is None:
+        return None
+
+    conversation.title = new_title.strip()[:200]
+    db.commit()
+    db.refresh(conversation)
+    return conversation
+
+
+# ---------------------------------------------------------------------------
+# Real accounts (email + password) -- replaces manually-pasted JWTs.
+# An admin creates chat-user accounts explicitly (create_user_account);
+# nobody self-registers. Both chat users and admins authenticate the same
+# way (get_user_by_email + verify_password in main.py's /auth/login).
+# ---------------------------------------------------------------------------
+
+def get_user_by_email(db: Session, email: str) -> Optional[User]:
+    return db.query(User).filter(User.email == email, User.is_active == True).first()  # noqa: E712
+
+
+def create_user_account(
+    db: Session,
+    *,
+    email: str,
+    password_hash: str,
+    platform: Platform,
+    tenant: Tenant,
+    role_name: Optional[str],
+) -> User:
+    """
+    Admin-initiated account creation -- the ONLY way a chat-user or admin
+    account comes into existence now. external_user_id is derived from
+    the email since there's no JWT claim to read it from anymore.
+    """
+    role = get_or_create_role(db, role_name)
+    user = User(
+        external_user_id=email,
+        email=email,
+        password_hash=password_hash,
+        platform_id=platform.id,
+        tenant_id=tenant.id,
+        role_id=role.id if role else None,
+    )
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+    return user
