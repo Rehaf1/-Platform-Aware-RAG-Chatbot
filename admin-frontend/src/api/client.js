@@ -35,6 +35,13 @@ async function request(path, options = {}) {
 }
 
 export const api = {
+  login: (email, password) =>
+    request("/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    }),
+
   health: () => request("/../health", { method: "GET" }),
   listDocuments: () => request("/documents", { method: "GET" }),
   getStatus: (name) => request(`/documents/${encodeURIComponent(name)}/status`, { method: "GET" }),

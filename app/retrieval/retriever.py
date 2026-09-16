@@ -7,6 +7,15 @@ from app.ingestion.embeddings import embed_texts
 
 DEFAULT_TOP_K = 5
 DEFAULT_SIMILARITY_THRESHOLD = 0.35   # cosine similarity, range -1..1
+# NOTE: An Arabic-specific threshold was tried and measured
+# (scripts/arabic_threshold_sweep.py) and reverted -- a 5-question sweep
+# showed every Arabic test question already scoring well above 0.35
+# (0.472-0.634), so there was no evidence a separate, lower threshold
+# for Arabic queries would change anything. The earlier Arabic fallback
+# bug (Section 26) was caused by the grounding word-overlap check
+# comparing an Arabic answer against English evidence text, not by
+# retrieval scoring too low -- that was fixed separately in
+# grounding.py's validate_answer_is_grounded(), which is the real fix.
 CANDIDATE_MULTIPLIER = 4              # over-fetch factor before post-filtering
 VERSION_MATCH_BOOST = 0.05
 
@@ -60,7 +69,7 @@ def retrieve(
     top_k: int = DEFAULT_TOP_K,
     similarity_threshold: float = DEFAULT_SIMILARITY_THRESHOLD,
 ) -> RetrievalResult:
-    
+
     if not platform_id or not tenant_id:
         raise ValueError(
             "platform_id and tenant_id are required and must come from "

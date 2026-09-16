@@ -1,12 +1,9 @@
-import { useState } from "react"
-import { Eye, EyeOff, Sun, Moon, Languages } from "lucide-react"
-import { getToken, setToken } from "../api/client"
+import { Sun, Moon, Languages, LogOut } from "lucide-react"
+import { setToken } from "../api/client"
 import { useTheme } from "../context/ThemeContext"
 import { useLanguage } from "../context/LanguageContext"
 
 export default function Sidebar({ active, onNavigate }) {
-  const [tokenValue, setTokenValue] = useState(getToken())
-  const [showToken, setShowToken] = useState(false)
   const { theme, toggleTheme } = useTheme()
   const { t, toggleLanguage } = useLanguage()
 
@@ -17,10 +14,13 @@ export default function Sidebar({ active, onNavigate }) {
     { id: "accounts", label: "Accounts" },
   ]
 
-  function handleTokenChange(e) {
-    const value = e.target.value.trim()
-    setTokenValue(value)
-    setToken(value)
+  function handleLogout() {
+    // Clears the token and reloads -- App.jsx's hasToken check then
+    // falls back to the login screen. A full reload (rather than a
+    // state flip) also resets any in-memory data tied to the previous
+    // session (uploaded document lists, etc.).
+    setToken("")
+    window.location.reload()
   }
 
   return (
@@ -76,28 +76,14 @@ export default function Sidebar({ active, onNavigate }) {
       </a>
 
       <div className="mt-auto pt-5 border-t border-white/10">
-        <label className="block text-[11px] uppercase tracking-wide text-white/40 mb-2 font-medium">
-          {t("adminToken")}
-        </label>
-        <div className="relative">
-          <input
-            type={showToken ? "text" : "password"}
-            value={tokenValue}
-            onChange={handleTokenChange}
-            placeholder={t("tokenPlaceholder")}
-            className="w-full bg-white/8 border border-white/15 rounded-md ps-2.5 pe-8 py-2 text-[11px] font-mono text-white placeholder:text-white/30 focus:outline-none focus:border-amber"
-          />
-          <button
-            type="button"
-            onClick={() => setShowToken((s) => !s)}
-            className="absolute end-2 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/70"
-          >
-            {showToken ? <EyeOff size={14} /> : <Eye size={14} />}
-          </button>
-        </div>
-        <div className={`text-[11px] mt-1.5 ${tokenValue ? "text-mint" : "text-white/40"}`}>
-          {tokenValue ? t("tokenSet") : t("tokenNotSet")}
-        </div>
+        <button
+          type="button"
+          onClick={handleLogout}
+          className="flex items-center gap-2 text-xs text-white/60 hover:text-white transition-colors"
+        >
+          <LogOut size={14} />
+          Sign out
+        </button>
       </div>
     </aside>
   )

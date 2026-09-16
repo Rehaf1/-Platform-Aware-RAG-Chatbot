@@ -5,12 +5,19 @@ import DocumentTable from "./components/DocumentTable"
 import UnansweredQuestions from "./components/UnansweredQuestions"
 import FrequentlyAsked from "./components/FrequentlyAsked"
 import CreateAccountPanel from "./components/CreateAccountPanel"
+import AdminLoginForm from "./components/AdminLoginForm"
 import { useLanguage } from "./context/LanguageContext"
+import { getToken } from "./api/client"
 
 export default function App() {
+  const [hasToken, setHasToken] = useState(!!getToken())
   const [active, setActive] = useState("documents")
   const [refreshSignal, setRefreshSignal] = useState(0)
   const { t } = useLanguage()
+
+  if (!hasToken) {
+    return <AdminLoginForm onLoggedIn={() => setHasToken(true)} />
+  }
 
   return (
     <div className="flex min-h-screen bg-paper dark:bg-[#16101F]">
